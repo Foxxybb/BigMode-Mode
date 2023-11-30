@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://btjxpn6hai8xo"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_p7kgs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8fr1"]
+size = Vector2(64, 96)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_p7kgs")
+
+[node name="LeftArm" type="Node2D" parent="."]
+position = Vector2(-48, 0)
+
+[node name="RightArm" type="Node2D" parent="."]
+position = Vector2(48, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u8fr1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = 48.0
+color = Color(0, 0, 1, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -64.0
+offset_top = -16.0
+offset_right = -32.0
+offset_bottom = 16.0
+color = Color(0.454902, 0.458824, 1, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 32.0
+offset_top = -16.0
+offset_right = 64.0
+offset_bottom = 16.0
+color = Color(0.454902, 0.458824, 1, 1)

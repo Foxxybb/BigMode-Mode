@@ -17,8 +17,8 @@ public partial class Oracle : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		Engine.MaxFps = 60;
-		DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
+		//Engine.MaxFps = 60;
+		//DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
 
 	//	Events.Instance.GameSceneReady += () => OnNewScene();
 

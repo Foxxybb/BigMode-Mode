@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://bs5dtan0rar6x"]
+[gd_scene load_steps=3 format=3 uid="uid://bs5dtan0rar6x"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g340c"]
+size = Vector2(640, 64)
+
+[node name="Scene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 352)
+offset = Vector2(0, 8)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(320, 704)
+shape = SubResource("RectangleShape2D_g340c")
+
+[node name="ColorRect" type="ColorRect" parent="Ground"]
+offset_top = 672.0
+offset_right = 640.0
+offset_bottom = 736.0
+
+[node name="Ground2" type="StaticBody2D" parent="."]
+position = Vector2(640, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+position = Vector2(320, 704)
+shape = SubResource("RectangleShape2D_g340c")
+
+[node name="ColorRect" type="ColorRect" parent="Ground2"]
+offset_top = 672.0
+offset_right = 640.0
+offset_bottom = 736.0
+
+[node name="Player" parent="." instance=ExtResource("1_q6ydu")]
+position = Vector2(320, 624)

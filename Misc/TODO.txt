@@ -1,0 +1,12 @@
+
+-bullet autofire
+
+-bullet push
+
+-bullet spray (variance)
+
+-mode change
+
+
+
+-Biggie model
