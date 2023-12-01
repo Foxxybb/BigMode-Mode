@@ -7,6 +7,8 @@ public partial class Bullet : Node2D
 	public float bulletSpeed = 15;
 	public float bulletVariance = 0.0f;
 
+	int lifeSpan = 180;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -16,6 +18,13 @@ public partial class Bullet : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// move bullet
 		this.Position = this.Position + bulletVector*bulletSpeed;
+
+		// tickdown lifespawn
+		lifeSpan--;
+		if (lifeSpan <= 0){
+			this.QueueFree();
+		}
 	}
 }

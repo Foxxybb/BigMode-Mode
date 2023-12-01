@@ -1,12 +1,28 @@
 
--bullet autofire
+//-bullet autofire
 
--bullet push
+//-bullet push
 
--bullet spray (variance)
+//-bullet spray (variance)
 
--mode change
+//-mode change
 
+//-vertical bullet
 
+-tune testscene boundaries
+
+-enemies
+
+-bullet collision
+
+-resetScene
+
+-sceneTransition
+
+-main menu
 
 -Biggie model
+
+-sounds
+
+-music

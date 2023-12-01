@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs5dtan0rar6x"]
+[gd_scene load_steps=6 format=3 uid="uid://bs5dtan0rar6x"]
 
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g340c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcpy2"]
 size = Vector2(640, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rn4x"]
+size = Vector2(64, 288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1xuf"]
+size = Vector2(640, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jdyi"]
+size = Vector2(64, 224)
 
 [node name="Scene" type="Node2D"]
 
@@ -15,24 +24,49 @@ offset = Vector2(0, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(320, 704)
-shape = SubResource("RectangleShape2D_g340c")
+shape = SubResource("RectangleShape2D_fcpy2")
 
 [node name="ColorRect" type="ColorRect" parent="Ground"]
 offset_top = 672.0
 offset_right = 640.0
 offset_bottom = 736.0
 
+[node name="Ground3" type="StaticBody2D" parent="."]
+position = Vector2(0, -352)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground3"]
+position = Vector2(32, 880)
+shape = SubResource("RectangleShape2D_4rn4x")
+
+[node name="ColorRect" type="ColorRect" parent="Ground3"]
+offset_top = 736.0
+offset_right = 64.0
+offset_bottom = 1024.0
+
 [node name="Ground2" type="StaticBody2D" parent="."]
 position = Vector2(640, -64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
 position = Vector2(320, 704)
-shape = SubResource("RectangleShape2D_g340c")
+shape = SubResource("RectangleShape2D_d1xuf")
 
 [node name="ColorRect" type="ColorRect" parent="Ground2"]
 offset_top = 672.0
 offset_right = 640.0
 offset_bottom = 736.0
+
+[node name="Ground4" type="StaticBody2D" parent="."]
+position = Vector2(640, -272)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground4"]
+position = Vector2(608, 768)
+shape = SubResource("RectangleShape2D_8jdyi")
+
+[node name="ColorRect" type="ColorRect" parent="Ground4"]
+offset_left = 576.0
+offset_top = 656.0
+offset_right = 640.0
+offset_bottom = 880.0
 
 [node name="Player" parent="." instance=ExtResource("1_q6ydu")]
 position = Vector2(320, 624)
