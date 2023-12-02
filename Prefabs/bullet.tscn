@@ -1,9 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dayn08gk8c66m"]
+[gd_scene load_steps=8 format=3 uid="uid://dayn08gk8c66m"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_wnfk8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cpyp"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_yk0wa"]
+
+[sub_resource type="Gradient" id="Gradient_x3ud2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h2ten"]
+gradient = SubResource("Gradient_x3ud2")
+
+[sub_resource type="SphereMesh" id="SphereMesh_o5mbp"]
+
+[sub_resource type="Gradient" id="Gradient_r80ci"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 0.219608, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nyvja"]
+gradient = SubResource("Gradient_r80ci")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_wnfk8")
@@ -11,13 +26,26 @@ script = ExtResource("1_wnfk8")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_1cpyp")
+shape = SubResource("CircleShape2D_yk0wa")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
 color = Color(1, 1, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_h2ten")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-1.43051e-06, -1.43051e-06)
+scale = Vector2(20.022, 20)
+mesh = SubResource("SphereMesh_o5mbp")
+texture = SubResource("GradientTexture2D_nyvja")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -98,7 +98,12 @@ public partial class Player : CharacterBody2D
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
-			velocity.Y += gravity * (float)delta;
+			if (jumpMode){
+				velocity.Y += gravity * (float)delta;
+			} else {
+				velocity.Y += gravity/5 * (float)delta;
+			}
+			
 		}
 			
 		// Handle Jump.
@@ -133,12 +138,35 @@ public partial class Player : CharacterBody2D
 			velocity.X = Mathf.MoveToward(velocity.X, 0, AirDrag);
 		}
 
-		// clamp  speed
+		// clamp speed
 		velocity.X = Math.Clamp(velocity.X, -horSpeedCap, horSpeedCap);
 		velocity.Y = Math.Clamp(velocity.Y, -verSpeedCap+100, verSpeedCap+200);
 
 		Velocity = velocity;
 		MoveAndSlide();
+
+		CheckBodyCollisions();
+	}
+
+	void CheckBodyCollisions(){
+		// check body collisions
+		for (int i = 0; i < GetSlideCollisionCount(); i++){
+			var coll = GetSlideCollision(i);
+			var body = coll.GetCollider();
+			//GD.Print("Collided with: " + body.GetType().ToString());
+
+			// if collision with "Enemy", player death
+			if (body.GetType().ToString() == "Enemy"){
+				GD.Print("death");
+				PlayerDeath();
+			}
+		}
+	}
+
+	void PlayerDeath(){
+		this.QueueFree();
+		// display retry message
+		GetNode<Control>("/root/Scene/Control").Visible = true;
 	}
 
 	void ShootBulletHorizontal(int dir)

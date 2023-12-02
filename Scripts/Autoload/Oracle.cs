@@ -54,19 +54,27 @@ public partial class Oracle : Node
 	}
 
 	void OnNewScene(){
-		cam = CurrentScene.GetNode<MyCamera>("Camera2D");
+		cam = CurrentScene.GetNode<MyCamera>("MyCamera");
 
-		transition = GetNode<AnimationPlayer>("/root/Scene/Camera2D/Transition/TransitionAnimator");
+		transition = GetNode<AnimationPlayer>("/root/Scene/MyCamera/Transition/TransitionAnimator");
 		transition.AnimationFinished += _on_transition_end;
 	}
 
 	public void ResetScene(){
-		GD.Print("scene reset");
+		GD.Print("Reset Scene");
 		// play transition out
 		transition.Play("transition_out");
 		
 		// reset scene
 		nextScenePath = GetTree().CurrentScene.SceneFilePath;
+	}
+
+	public void ChangeScene(string path){
+		GD.Print("Change Scene");
+		// play transition out
+		transition.Play("transition_out");
+
+		nextScenePath = path;
 	}
 
 	// Scene change script

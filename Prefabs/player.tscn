@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://btjxpn6hai8xo"]
+[gd_scene load_steps=5 format=3 uid="uid://btjxpn6hai8xo"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_p7kgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8fr1"]
 size = Vector2(64, 96)
+
+[sub_resource type="Gradient" id="Gradient_ns32g"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q5jk6"]
+gradient = SubResource("Gradient_ns32g")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_p7kgs")
@@ -33,9 +41,9 @@ color = Color(0.454902, 0.458824, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_u8fr1")
 
-[node name="ColorRect" type="ColorRect" parent="CollisionShape2D"]
+[node name="TextureRect" type="TextureRect" parent="CollisionShape2D"]
 offset_left = -32.0
 offset_top = -48.0
 offset_right = 32.0
 offset_bottom = 48.0
-color = Color(0, 0, 1, 1)
+texture = SubResource("GradientTexture2D_q5jk6")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs5dtan0rar6x"]
+[gd_scene load_steps=10 format=3 uid="uid://bs5dtan0rar6x"]
 
-[ext_resource type="Script" path="res://Scripts/MyCamera.cs" id="1_408tu"]
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_a8riq"]
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
 [ext_resource type="PackedScene" uid="uid://cfj1a87f12oyh" path="res://Prefabs/enemy.tscn" id="2_rcjry"]
+[ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_yvtev"]
+[ext_resource type="Script" path="res://Scripts/Spawner.cs" id="5_g1nqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcpy2"]
 size = Vector2(1280, 64)
@@ -20,10 +21,32 @@ size = Vector2(64, 672)
 [node name="Scene" type="Node2D"]
 script = ExtResource("1_a8riq")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(640, 352)
-offset = Vector2(0, 8)
-script = ExtResource("1_408tu")
+[node name="MyCamera" parent="." instance=ExtResource("2_yvtev")]
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 240.0
+offset_right = 736.0
+offset_bottom = 368.0
+theme_override_font_sizes/normal_font_size = 22
+text = "PRESS R TO RETRY"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 128.0
+offset_right = 768.0
+offset_bottom = 256.0
+theme_override_font_sizes/normal_font_size = 40
+text = "DESTROYED"
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, -736)
@@ -50,14 +73,14 @@ offset_right = 64.0
 offset_bottom = 1024.0
 color = Color(0.443137, 1, 1, 1)
 
-[node name="Ground2" type="StaticBody2D" parent="."]
+[node name="GroundB" type="StaticBody2D" parent="."]
 position = Vector2(640, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundB"]
 position = Vector2(0, 704)
 shape = SubResource("RectangleShape2D_d1xuf")
 
-[node name="ColorRect" type="ColorRect" parent="Ground2"]
+[node name="ColorRect" type="ColorRect" parent="GroundB"]
 offset_left = -640.0
 offset_top = 672.0
 offset_right = 640.0
@@ -78,7 +101,10 @@ offset_right = 640.0
 offset_bottom = 944.0
 
 [node name="Player" parent="." instance=ExtResource("1_q6ydu")]
-position = Vector2(320, 624)
+position = Vector2(640, 624)
 
 [node name="Enemy" parent="." instance=ExtResource("2_rcjry")]
-position = Vector2(960, 608)
+position = Vector2(1344, 608)
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("5_g1nqg")

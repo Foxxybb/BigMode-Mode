@@ -19,7 +19,21 @@
 
 //-sceneTransition
 
--main menu
+//-main menu
+
+//-adjust bullet shape
+
+//-enemy movement
+
+//-player death
+
+//-hover mode gravity
+
+-enemy spawner
+
+-enemy loop path
+
+
 
 -Biggie model
 
