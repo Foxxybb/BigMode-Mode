@@ -9,7 +9,7 @@ public partial class Oracle : Node
 	string nextScenePath; // used to store path to delay scene change until transition animation finishes
 
 	AnimationPlayer transition;
-	//Camera cam;
+	MyCamera cam;
 
 	public bool myDebug = true;
 
@@ -17,10 +17,8 @@ public partial class Oracle : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		//Engine.MaxFps = 60;
-		//DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
 
-	//	Events.Instance.GameSceneReady += () => OnNewScene();
+		Events.Instance.GameSceneReady += () => OnNewScene();
 
 		Viewport root = GetTree().Root;
 		CurrentScene = root.GetChild(root.GetChildCount() - 1);
@@ -29,10 +27,10 @@ public partial class Oracle : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//if (Input.IsActionJustPressed("reset_action"))
-		//{
-		//	ResetScene();
-		//}
+		if (Input.IsActionJustPressed("reset_action"))
+		{
+			ResetScene();
+		}
 
 		//if (Input.IsActionJustPressed("window_action"))
 		//{
@@ -55,10 +53,17 @@ public partial class Oracle : Node
 		//}
 	}
 
+	void OnNewScene(){
+		cam = CurrentScene.GetNode<MyCamera>("Camera2D");
+
+		transition = GetNode<AnimationPlayer>("/root/Scene/Camera2D/Transition/TransitionAnimator");
+		transition.AnimationFinished += _on_transition_end;
+	}
+
 	public void ResetScene(){
 		GD.Print("scene reset");
 		// play transition out
-		//transition.Play("transition_out");
+		transition.Play("transition_out");
 		
 		// reset scene
 		nextScenePath = GetTree().CurrentScene.SceneFilePath;
@@ -90,13 +95,6 @@ public partial class Oracle : Node
 
 		// Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
 		GetTree().CurrentScene = CurrentScene;
-	}
-
-	void OnNewScene(){
-		//transition = GetNode<AnimationPlayer>("/root/Scene/Camera2D/Transition/TransitionAnimator");
-		//transition.AnimationFinished += _on_transition_end;
-		//cam = CurrentScene.GetNode<Camera>("Camera2D");
-
 	}
 
 	void _on_transition_end(StringName anim_name)

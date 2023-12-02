@@ -9,15 +9,15 @@
 
 //-vertical bullet
 
--tune testscene boundaries
+//-tune testscene boundaries
 
--enemies
+//-enemies
 
--bullet collision
+//-bullet collision
 
--resetScene
+//-resetScene
 
--sceneTransition
+//-sceneTransition
 
 -main menu
 

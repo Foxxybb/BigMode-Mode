@@ -5,17 +5,16 @@ public partial class Player : CharacterBody2D
 {
 	public const float Drag = 3f;
 	public const float AirDrag = 1f;
-	public const float JumpVelocity = -400.0f;
+	public const float JumpVelocity = -500.0f;
 	int horSpeedCap = 500;
-	int verSpeedCap = 550;
+	int verSpeedCap = 600;
 	int bulletForce = 50;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	bool jumpMode = false;
-	bool changingModes = false;
-	int modeChangeCooldown = 60;
+	int modeChangeCooldown = 40;
 	int modeChangeCooldownTick;
 
 	// used for bullet spawns
@@ -37,20 +36,18 @@ public partial class Player : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-
 		if (modeChangeCooldownTick <= 0)
 		{
 			// shoot left
 			if (Input.IsActionPressed("shoot_left"))
 			{
-				
 				// if gun is cool, shoot and reset CD
 				if (leftArmCD <= 0)
 				{
 					if (jumpMode){
 						ShootBulletDown(-1);
 						// apply bullet force
-						Velocity = Velocity + new Vector2(bulletForce/2, -bulletForce*2);
+						Velocity = Velocity + new Vector2(bulletForce/(1.5f), -bulletForce*2);
 					} else {
 						ShootBulletHorizontal(-1);
 						// apply bullet force
@@ -63,7 +60,6 @@ public partial class Player : CharacterBody2D
 				{ // tick down CD
 					leftArmCD--;
 				}
-				
 			}
 
 			// shoot right
@@ -75,7 +71,7 @@ public partial class Player : CharacterBody2D
 					if (jumpMode){
 						ShootBulletDown(1);
 						// apply bullet force
-						Velocity = Velocity + new Vector2(-bulletForce/2, -bulletForce*2);
+						Velocity = Velocity + new Vector2(-bulletForce/(1.5f), -bulletForce*2);
 					} else {
 						ShootBulletHorizontal(1);
 						// apply bullet force
@@ -93,7 +89,6 @@ public partial class Player : CharacterBody2D
 			// tick down modeChangeCooldownTick
 			modeChangeCooldownTick--;
 		}
-
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -107,9 +102,15 @@ public partial class Player : CharacterBody2D
 		}
 			
 		// Handle Jump.
-		if (Input.IsActionJustPressed("mode_change") && !changingModes)
+		if (Input.IsActionJustPressed("mode_change") && modeChangeCooldownTick <= 0)
 		{
-			velocity.Y = JumpVelocity;
+			// go up when switching to jumpmode, fall when switching to firemode
+			if (!jumpMode){
+				velocity.Y = JumpVelocity;
+			} else {
+				//velocity.Y = -JumpVelocity;
+			}
+
 			// mode change
 			ModeChange();
 		}
@@ -134,7 +135,7 @@ public partial class Player : CharacterBody2D
 
 		// clamp  speed
 		velocity.X = Math.Clamp(velocity.X, -horSpeedCap, horSpeedCap);
-		velocity.Y = Math.Clamp(velocity.Y, -verSpeedCap, verSpeedCap);
+		velocity.Y = Math.Clamp(velocity.Y, -verSpeedCap+100, verSpeedCap+200);
 
 		Velocity = velocity;
 		MoveAndSlide();
