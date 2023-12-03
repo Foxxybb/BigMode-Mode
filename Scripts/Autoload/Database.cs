@@ -6,6 +6,7 @@ public partial class Database : Node
 	public static Database Instance;
 
 	public PackedScene bullet;
+	public PackedScene enemy;
 	public PackedScene transition;
 
 	// Called when the node enters the scene tree for the first time.
@@ -18,6 +19,7 @@ public partial class Database : Node
 
 	void LoadStuffs(){
 		bullet = GD.Load<PackedScene>("res://Prefabs/bullet.tscn");
+		enemy = GD.Load<PackedScene>("res://Prefabs/enemy.tscn");
 		transition = GD.Load<PackedScene>("res://Prefabs/transition.tscn");
 	}
 

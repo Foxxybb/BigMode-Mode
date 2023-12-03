@@ -29,14 +29,28 @@
 
 //-hover mode gravity
 
--enemy spawner
+//-enemy spawner
 
--enemy loop path
+//-enemy stun
 
 
 
 -Biggie model
 
+-Background
+
+-Ground Tiles
+
+-spawn sequence
+
+-enemy design(s)?
+
+-score
+
+-timer
+
 -sounds
 
 -music
+
+-about page

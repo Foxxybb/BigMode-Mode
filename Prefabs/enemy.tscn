@@ -15,7 +15,8 @@ fill_from = Vector2(0, 0.974359)
 fill_to = Vector2(0, 0)
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_mask = 0
+collision_layer = 3
+collision_mask = 2
 script = ExtResource("1_ltvcb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

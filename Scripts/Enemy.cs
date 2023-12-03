@@ -3,8 +3,11 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
-	int HP = 30;
-	Vector2 movementVec;
+	int stun = 3;
+	int stunTick;
+
+	public Vector2 movementVec;
+	public int HP = 30;
 
 	ShaderMaterial shader;
 	float flash;
@@ -25,6 +28,8 @@ public partial class Enemy : CharacterBody2D
 		if (HP <= 0){
 			this.QueueFree();
 		}
+		
+		
 
 		shader.SetShaderParameter("flash_modifier", flash);
 		if (flash > 0) flash -= 0.25f;
@@ -34,12 +39,20 @@ public partial class Enemy : CharacterBody2D
 	{
 		
 
-		Velocity = movementVec;
+		// stun
+		if (stunTick > 0){
+			Velocity = Vector2.Zero;
+			stunTick--;
+		} else {
+			Velocity = movementVec;
+		}
+		
 		MoveAndSlide();
 	}
 
 	public void TakeDamage(){
 		HP--;
+		stunTick = stun;
 		flash = 1;
 	}
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs5dtan0rar6x"]
+[gd_scene load_steps=9 format=3 uid="uid://bs5dtan0rar6x"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_a8riq"]
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
-[ext_resource type="PackedScene" uid="uid://cfj1a87f12oyh" path="res://Prefabs/enemy.tscn" id="2_rcjry"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_yvtev"]
 [ext_resource type="Script" path="res://Scripts/Spawner.cs" id="5_g1nqg"]
 
@@ -31,6 +30,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+top_level = true
 layout_mode = 0
 offset_left = 544.0
 offset_top = 240.0
@@ -40,6 +40,7 @@ theme_override_font_sizes/normal_font_size = 22
 text = "PRESS R TO RETRY"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
+top_level = true
 layout_mode = 0
 offset_left = 528.0
 offset_top = 128.0
@@ -103,8 +104,65 @@ offset_bottom = 944.0
 [node name="Player" parent="." instance=ExtResource("1_q6ydu")]
 position = Vector2(640, 624)
 
-[node name="Enemy" parent="." instance=ExtResource("2_rcjry")]
-position = Vector2(1344, 608)
-
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("5_g1nqg")
+
+[node name="Spawn1" type="Node2D" parent="Spawner"]
+position = Vector2(1408, 608)
+
+[node name="ColorRect" type="ColorRect" parent="Spawner/Spawn1"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(1, 0, 1, 1)
+
+[node name="Spawn2" type="Node2D" parent="Spawner"]
+position = Vector2(1408, 368)
+
+[node name="ColorRect" type="ColorRect" parent="Spawner/Spawn2"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(1, 0, 1, 1)
+
+[node name="Spawn3" type="Node2D" parent="Spawner"]
+position = Vector2(1408, 128)
+
+[node name="ColorRect" type="ColorRect" parent="Spawner/Spawn3"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(1, 0, 1, 1)
+
+[node name="Spawn4" type="Node2D" parent="Spawner"]
+position = Vector2(-128, 608)
+
+[node name="ColorRect" type="ColorRect" parent="Spawner/Spawn4"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(1, 0, 1, 1)
+
+[node name="Spawn5" type="Node2D" parent="Spawner"]
+position = Vector2(-128, 368)
+
+[node name="ColorRect" type="ColorRect" parent="Spawner/Spawn5"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(1, 0, 1, 1)
+
+[node name="Spawn6" type="Node2D" parent="Spawner"]
+position = Vector2(-128, 128)
+
+[node name="ColorRect" type="ColorRect" parent="Spawner/Spawn6"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(1, 0, 1, 1)

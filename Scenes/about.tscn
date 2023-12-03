@@ -49,9 +49,9 @@ text = "Quit"
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 0
 offset_left = -160.0
-offset_top = -464.0
+offset_top = -592.0
 offset_right = 192.0
-offset_bottom = -336.0
+offset_bottom = -464.0
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "BIGGIE BLASTER"
@@ -59,9 +59,9 @@ text = "BIGGIE BLASTER"
 [node name="RichTextLabel3" type="RichTextLabel" parent="Control"]
 layout_mode = 0
 offset_left = -160.0
-offset_top = -320.0
+offset_top = -448.0
 offset_right = 192.0
-offset_bottom = -208.0
+offset_bottom = -336.0
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "by Caleb Richardson
@@ -70,9 +70,9 @@ text = "by Caleb Richardson
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
 layout_mode = 0
 offset_left = -224.0
-offset_top = -160.0
-offset_right = 416.0
-offset_bottom = 48.0
+offset_top = -288.0
+offset_right = 256.0
+offset_bottom = -208.0
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "for BigMode game jam: \"Mode\"
