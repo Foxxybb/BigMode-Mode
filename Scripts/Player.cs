@@ -26,12 +26,22 @@ public partial class Player : CharacterBody2D
 	Node2D rightArm;
 	int rightArmCD = 0;
 
-	int altInt = 1;
+	AnimatedSprite2D an;
+	public string anState;
+	const string IDLE = "idle";
+	const string AIR = "air";
+	const string JUMP = "jump";
+	const string FIRE = "fire";
+
 
 	public override void _Ready()
 	{
+		an = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
 		leftArm = GetNode<Node2D>("LeftArm");
 		rightArm = GetNode<Node2D>("RightArm");
+
+		ChangeAnimationState(IDLE);
 	}
 
 	public override void _Process(double delta)
@@ -89,6 +99,8 @@ public partial class Player : CharacterBody2D
 			// tick down modeChangeCooldownTick
 			modeChangeCooldownTick--;
 		}
+
+		HandleAnimation();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -206,11 +218,60 @@ public partial class Player : CharacterBody2D
 		if (jumpMode){
 			leftArm.Position = leftArm.Position + new Vector2(-16,-32);
 			rightArm.Position = rightArm.Position + new Vector2(16,-32);
+
+			// play animation
+			ChangeAnimationState(FIRE);
 		} else {
 			leftArm.Position = leftArm.Position + new Vector2(16,32);
 			rightArm.Position = rightArm.Position + new Vector2(-16,32);
+
+			// play animation
+			ChangeAnimationState(JUMP);
 		}
 
 		jumpMode = !jumpMode;
+	}
+
+	// function to manually switch animation states
+	public void ChangeAnimationState(string newState){
+		//stop self interruption
+		if (anState == newState){
+			// switch statement contains all animations that can cancel into themselves
+			switch (newState){
+				default:
+					return;
+			}
+		}
+
+		// play animation
+		an.Play(newState);
+
+		// assign state
+		anState = newState;
+	}
+
+	// function to automatically transition animations
+	void HandleAnimation(){
+
+		// auto transitions (on animation end)
+		if (!an.IsPlaying())
+		{	
+			switch (anState){
+				case JUMP:
+					ChangeAnimationState(AIR);
+					break;
+				case FIRE:
+					ChangeAnimationState(IDLE);
+					break;
+				default:
+					break;
+			}
+		} else {
+			// IsPlaying
+			switch (anState){
+				default:
+					break;
+			}
+		}
 	}
 }

@@ -33,9 +33,13 @@
 
 //-enemy stun
 
+//-Biggie model
 
+//-player animation state
 
--Biggie model
+-adjust bullet spawns
+
+-adjust bullet size/appearance
 
 -Background
 
