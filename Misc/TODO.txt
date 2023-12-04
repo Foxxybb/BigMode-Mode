@@ -37,7 +37,7 @@
 
 //-player animation state
 
--adjust bullet spawns
+//-adjust bullet spawns
 
 -adjust bullet size/appearance
 

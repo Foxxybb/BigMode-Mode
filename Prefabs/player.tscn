@@ -840,9 +840,10 @@ animations = [{
 script = ExtResource("1_p7kgs")
 
 [node name="LeftArm" type="Node2D" parent="."]
-position = Vector2(-48, 0)
+position = Vector2(-48, 4)
 
 [node name="ColorRect2" type="ColorRect" parent="LeftArm"]
+visible = false
 z_index = 1
 offset_left = -16.0
 offset_top = -16.0
@@ -851,9 +852,10 @@ offset_bottom = 16.0
 color = Color(0.454902, 0.458824, 1, 1)
 
 [node name="RightArm" type="Node2D" parent="."]
-position = Vector2(48, 0)
+position = Vector2(48, 4)
 
 [node name="ColorRect3" type="ColorRect" parent="RightArm"]
+visible = false
 z_index = 1
 offset_left = -16.0
 offset_top = -16.0
@@ -877,6 +879,5 @@ z_index = 1
 position = Vector2(0, 4)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_24jr2")
-animation = &"air"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.562007

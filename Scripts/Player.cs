@@ -216,14 +216,14 @@ public partial class Player : CharacterBody2D
 		// move arm cannon positions
 		// if in jumpMode, move cannons back
 		if (jumpMode){
-			leftArm.Position = leftArm.Position + new Vector2(-16,-32);
-			rightArm.Position = rightArm.Position + new Vector2(16,-32);
+			leftArm.Position = leftArm.Position + new Vector2(-28,-32);
+			rightArm.Position = rightArm.Position + new Vector2(28,-32);
 
 			// play animation
 			ChangeAnimationState(FIRE);
 		} else {
-			leftArm.Position = leftArm.Position + new Vector2(16,32);
-			rightArm.Position = rightArm.Position + new Vector2(-16,32);
+			leftArm.Position = leftArm.Position + new Vector2(28,32);
+			rightArm.Position = rightArm.Position + new Vector2(-28,32);
 
 			// play animation
 			ChangeAnimationState(JUMP);
