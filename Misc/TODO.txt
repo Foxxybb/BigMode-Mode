@@ -39,11 +39,21 @@
 
 //-adjust bullet spawns
 
--adjust bullet size/appearance
+//-adjust bullet size/appearance
 
--Background
+//-Background
+
+//-fullscreen toggle
+
+//-bullet outline
+
+//-Gunflash
 
 -Ground Tiles
+
+
+
+-sounds
 
 -spawn sequence
 
@@ -53,7 +63,7 @@
 
 -timer
 
--sounds
+
 
 -music
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs5dtan0rar6x"]
+[gd_scene load_steps=10 format=3 uid="uid://bs5dtan0rar6x"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_a8riq"]
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_yvtev"]
 [ext_resource type="Script" path="res://Scripts/Spawner.cs" id="5_g1nqg"]
+[ext_resource type="Texture2D" uid="uid://c4rc4ao55hi22" path="res://Misc/epic.jpg" id="5_ue0rk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcpy2"]
 size = Vector2(1280, 64)
@@ -166,3 +167,9 @@ offset_top = -64.0
 offset_right = 64.0
 offset_bottom = 64.0
 color = Color(1, 0, 1, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -5
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("5_ue0rk")

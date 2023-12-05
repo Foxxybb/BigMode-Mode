@@ -1,4 +1,4 @@
-[gd_scene load_steps=206 format=3 uid="uid://btjxpn6hai8xo"]
+[gd_scene load_steps=209 format=3 uid="uid://btjxpn6hai8xo"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_p7kgs"]
 [ext_resource type="Texture2D" uid="uid://ddglgmidauans" path="res://Sprites/Biggie/idle/0001.png" id="2_oauox"]
@@ -201,6 +201,25 @@
 [ext_resource type="Texture2D" uid="uid://dsbygvthexgwl" path="res://Sprites/Biggie/jump/0039.png" id="80_wofuc"]
 [ext_resource type="Texture2D" uid="uid://xcyk0r6fin7c" path="res://Sprites/Biggie/jump/0040.png" id="81_3whdi"]
 [ext_resource type="Texture2D" uid="uid://uhsc2kr856y" path="res://Sprites/Biggie/air/0119.png" id="81_lhec8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kvwrj"]
+particle_flag_disable_z = true
+spread = 30.82
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 154.55
+initial_velocity_max = 536.36
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="Gradient" id="Gradient_oqpb6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_inpnk"]
+gradient = SubResource("Gradient_oqpb6")
+width = 5
+height = 5
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8fr1"]
 size = Vector2(64, 96)
@@ -851,6 +870,21 @@ offset_right = 16.0
 offset_bottom = 16.0
 color = Color(0.454902, 0.458824, 1, 1)
 
+[node name="LeftGunFlash" type="GPUParticles2D" parent="LeftArm"]
+position = Vector2(4, -4.76837e-07)
+rotation = 3.14159
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_kvwrj")
+texture = SubResource("GradientTexture2D_inpnk")
+lifetime = 0.15
+one_shot = true
+explosiveness = 0.5
+randomness = 0.49
+fixed_fps = 60
+visibility_rect = Rect2(5, 5, 5, 5)
+trail_lifetime = 0.5
+
 [node name="RightArm" type="Node2D" parent="."]
 position = Vector2(48, 4)
 
@@ -862,6 +896,20 @@ offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
 color = Color(0.454902, 0.458824, 1, 1)
+
+[node name="RightGunFlash" type="GPUParticles2D" parent="RightArm"]
+rotation = -6.28319
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_kvwrj")
+texture = SubResource("GradientTexture2D_inpnk")
+lifetime = 0.15
+one_shot = true
+explosiveness = 0.5
+randomness = 0.49
+fixed_fps = 60
+visibility_rect = Rect2(5, 5, 5, 5)
+trail_lifetime = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_u8fr1")

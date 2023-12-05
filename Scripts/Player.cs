@@ -22,9 +22,11 @@ public partial class Player : CharacterBody2D
 
 	Node2D leftArm;
 	int leftArmCD = 0; // cooldown
+	GpuParticles2D leftArmFlash;
 
 	Node2D rightArm;
 	int rightArmCD = 0;
+	GpuParticles2D rightArmFlash;
 
 	AnimatedSprite2D an;
 	public string anState;
@@ -33,13 +35,14 @@ public partial class Player : CharacterBody2D
 	const string JUMP = "jump";
 	const string FIRE = "fire";
 
-
 	public override void _Ready()
 	{
 		an = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 		leftArm = GetNode<Node2D>("LeftArm");
+		leftArmFlash = leftArm.GetNode<GpuParticles2D>("LeftGunFlash");
 		rightArm = GetNode<Node2D>("RightArm");
+		rightArmFlash = rightArm.GetNode<GpuParticles2D>("RightGunFlash");
 
 		ChangeAnimationState(IDLE);
 	}
@@ -115,7 +118,6 @@ public partial class Player : CharacterBody2D
 			} else {
 				velocity.Y += gravity/5 * (float)delta;
 			}
-			
 		}
 			
 		// Handle Jump.
@@ -125,24 +127,13 @@ public partial class Player : CharacterBody2D
 			if (!jumpMode){
 				velocity.Y = JumpVelocity;
 			} else {
-				//velocity.Y = -JumpVelocity;
+				// smaller jump into firemode
+				velocity.Y = JumpVelocity/4;
 			}
 
 			// mode change
 			ModeChange();
 		}
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		//Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		// if (direction != Vector2.Zero)
-		// {
-		// 	velocity.X = direction.X * Speed;
-		// }
-		// else
-		// {
-		//velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		// }
 
 		if (IsOnFloor()){
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Drag);
@@ -193,6 +184,13 @@ public partial class Player : CharacterBody2D
 
 		// set vector of bullet with variance
 		newBullet.bulletVector = new Vector2(dir, (float)GD.RandRange(-0.1, 0.1));
+
+		// trigger gun flash particles
+		if (dir == 1){
+			rightArmFlash.Emitting = true;
+		} else {
+			leftArmFlash.Emitting = true;
+		}
 	}
 
 	void ShootBulletDown(int dir){
@@ -206,6 +204,13 @@ public partial class Player : CharacterBody2D
 
 		// set vector of bullet with variance
 		newBullet.bulletVector = new Vector2((float)GD.RandRange(-0.1, 0.1), 1);
+
+		// trigger gun flash particles
+		if (dir == 1){
+			rightArmFlash.Emitting = true;
+		} else {
+			leftArmFlash.Emitting = true;
+		}
 	}
 
 	void ModeChange()
@@ -218,12 +223,16 @@ public partial class Player : CharacterBody2D
 		if (jumpMode){
 			leftArm.Position = leftArm.Position + new Vector2(-28,-32);
 			rightArm.Position = rightArm.Position + new Vector2(28,-32);
+			leftArm.RotationDegrees = 0;
+			rightArm.RotationDegrees = 0;
 
 			// play animation
 			ChangeAnimationState(FIRE);
 		} else {
 			leftArm.Position = leftArm.Position + new Vector2(28,32);
 			rightArm.Position = rightArm.Position + new Vector2(-28,32);
+			leftArm.RotationDegrees = -90;
+			rightArm.RotationDegrees = 90;
 
 			// play animation
 			ChangeAnimationState(JUMP);

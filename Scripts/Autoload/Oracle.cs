@@ -32,14 +32,14 @@ public partial class Oracle : Node
 			ResetScene();
 		}
 
-		//if (Input.IsActionJustPressed("window_action"))
-		//{
-		//	if (DisplayServer.WindowGetMode() == (DisplayServer.WindowMode.ExclusiveFullscreen)){
-		//		DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-		//	} else {
-		//		DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
-		//	}
-		//}
+		if (Input.IsActionJustPressed("test_action"))
+		{
+			if (DisplayServer.WindowGetMode() == (DisplayServer.WindowMode.ExclusiveFullscreen)){
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			} else {
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
+			}
+		}
 
 		//if (Input.IsActionJustPressed("test_action"))
 		//{
