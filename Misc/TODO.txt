@@ -51,13 +51,17 @@
 
 -Ground Tiles
 
-
+-re render player brighter
 
 -sounds
 
--spawn sequence
+-enemy chase
 
 -enemy design(s)?
+
+-spawn sequence
+
+
 
 -score
 
