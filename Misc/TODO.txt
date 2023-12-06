@@ -49,11 +49,17 @@
 
 //-Gunflash
 
--Ground Tiles
+//-Ground Tiles
 
--re render player brighter
+//-re render player brighter
 
--sounds
+//-sounds:
+//shoot
+//jump
+//fire
+//kill
+//hit
+//death
 
 -enemy chase
 
@@ -61,7 +67,7 @@
 
 -spawn sequence
 
-
+-grid background
 
 -score
 

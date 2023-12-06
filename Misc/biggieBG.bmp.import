@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4rc4ao55hi22"
-path="res://.godot/imported/epic.jpg-d5397a8b9c7b302ebb56bb5cf7bcc366.ctex"
+uid="uid://c7dgcwogpvnve"
+path="res://.godot/imported/biggieBG.bmp-3c97373835521c3f34dde407b09ed6dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc/epic.jpg"
-dest_files=["res://.godot/imported/epic.jpg-d5397a8b9c7b302ebb56bb5cf7bcc366.ctex"]
+source_file="res://Misc/biggieBG.bmp"
+dest_files=["res://.godot/imported/biggieBG.bmp-3c97373835521c3f34dde407b09ed6dc.ctex"]
 
 [params]
 

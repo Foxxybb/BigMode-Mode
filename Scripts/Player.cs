@@ -28,6 +28,8 @@ public partial class Player : CharacterBody2D
 	int rightArmCD = 0;
 	GpuParticles2D rightArmFlash;
 
+	AudioStreamPlayer2D gunSoundPlayer;
+
 	AnimatedSprite2D an;
 	public string anState;
 	const string IDLE = "idle";
@@ -38,6 +40,8 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 		an = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		gunSoundPlayer = GetNode<AudioStreamPlayer2D>("GunSoundPlayer");
+		gunSoundPlayer.Stream = SoundManager.Instance.shot;
 
 		leftArm = GetNode<Node2D>("LeftArm");
 		leftArmFlash = leftArm.GetNode<GpuParticles2D>("LeftGunFlash");
@@ -101,6 +105,13 @@ public partial class Player : CharacterBody2D
 		} else {
 			// tick down modeChangeCooldownTick
 			modeChangeCooldownTick--;
+		}
+
+		if (Input.IsActionJustReleased("shoot_right")){
+			rightArmCD = 0;
+		}
+		if (Input.IsActionJustReleased("shoot_left")){
+			leftArmCD = 0;
 		}
 
 		HandleAnimation();
@@ -167,6 +178,9 @@ public partial class Player : CharacterBody2D
 	}
 
 	void PlayerDeath(){
+		// play death sound
+		SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.death, this, -2);
+
 		this.QueueFree();
 		// display retry message
 		GetNode<Control>("/root/Scene/Control").Visible = true;
@@ -191,6 +205,12 @@ public partial class Player : CharacterBody2D
 		} else {
 			leftArmFlash.Emitting = true;
 		}
+
+		// play sound
+		//SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.shot, this, 1);
+		// instead play sound from player gun, so sounds are interrupted
+		gunSoundPlayer.PitchScale = 1.0f;
+		gunSoundPlayer.Play();
 	}
 
 	void ShootBulletDown(int dir){
@@ -211,6 +231,10 @@ public partial class Player : CharacterBody2D
 		} else {
 			leftArmFlash.Emitting = true;
 		}
+
+		// play sound
+		gunSoundPlayer.PitchScale = 0.9f;
+		gunSoundPlayer.Play();
 	}
 
 	void ModeChange()
@@ -228,6 +252,9 @@ public partial class Player : CharacterBody2D
 
 			// play animation
 			ChangeAnimationState(FIRE);
+			// play sound
+			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.fire, this, 1);
+			
 		} else {
 			leftArm.Position = leftArm.Position + new Vector2(28,32);
 			rightArm.Position = rightArm.Position + new Vector2(-28,32);
@@ -236,6 +263,8 @@ public partial class Player : CharacterBody2D
 
 			// play animation
 			ChangeAnimationState(JUMP);
+			// play sound
+			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.jump, this, 1);
 		}
 
 		jumpMode = !jumpMode;

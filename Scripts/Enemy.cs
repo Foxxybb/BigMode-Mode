@@ -26,6 +26,7 @@ public partial class Enemy : CharacterBody2D
 
 		// HP
 		if (HP <= 0){
+			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 0);
 			this.QueueFree();
 		}
 		

@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 Database="*res://Scripts/Autoload/Database.cs"
 Events="*res://Scripts/Autoload/Events.cs"
 Oracle="*res://Scripts/Autoload/Oracle.cs"
+SoundManager="*res://Prefabs/Autoload/SoundManager.tscn"
 
 [display]
 

@@ -929,3 +929,5 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_24jr2")
 animation = &"air"
 autoplay = "idle"
+
+[node name="GunSoundPlayer" type="AudioStreamPlayer2D" parent="."]
