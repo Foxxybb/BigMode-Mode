@@ -32,24 +32,37 @@ public partial class Bullet : Node2D
 	private void _on_area_2d_body_entered(Node2D body)
 	{
 		//GD.Print(body.GetType().ToString());
-		
+
 		switch (body.GetType().ToString())
-			{
-				case "Godot.StaticBody2D":
-					Collide();
-					break;
-				case "Enemy":
-					Enemy enemy = (Enemy)body; // get enemy script
-					enemy.TakeDamage();
-					SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -1);
-					Collide();
-					break;
-				default:
+		{
+			case "Godot.StaticBody2D":
+				Collide();
 				break;
-			}
+			case "Enemy":
+				Enemy enemy = (Enemy)body; // get enemy script
+				enemy.TakeDamage();
+				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -1);
+				Collide();
+				break;
+			case "EnemyG":
+				EnemyG enemyG = (EnemyG)body; // get enemy script
+				enemyG.TakeDamage();
+				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -1);
+				Collide();
+				break;
+			case "EnemyA":
+				EnemyA enemyA = (EnemyA)body; // get enemy script
+				enemyA.TakeDamage();
+				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -1);
+				Collide();
+				break;
+			default:
+				break;
+		}
 	}
 
-	void Collide(){
+	void Collide()
+	{
 		this.QueueFree();
 	}
 

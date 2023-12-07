@@ -61,11 +61,21 @@
 //hit
 //death
 
--enemy chase
+//-enemy types
+
+//-enemy chase
+
+//-enemy spawn warning
+
+//-warn sound
 
 -enemy design(s)?
 
 -spawn sequence
+
+-kill particles
+
+-death particles
 
 -grid background
 

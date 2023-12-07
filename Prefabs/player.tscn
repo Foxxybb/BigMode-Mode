@@ -856,6 +856,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
 script = ExtResource("1_p7kgs")
 
 [node name="LeftArm" type="Node2D" parent="."]
@@ -871,6 +872,7 @@ offset_bottom = 16.0
 color = Color(0.454902, 0.458824, 1, 1)
 
 [node name="LeftGunFlash" type="GPUParticles2D" parent="LeftArm"]
+z_index = 3
 position = Vector2(4, -4.76837e-07)
 rotation = 3.14159
 emitting = false
@@ -898,6 +900,7 @@ offset_bottom = 16.0
 color = Color(0.454902, 0.458824, 1, 1)
 
 [node name="RightGunFlash" type="GPUParticles2D" parent="RightArm"]
+z_index = 3
 rotation = -6.28319
 emitting = false
 amount = 10
@@ -923,7 +926,7 @@ offset_bottom = 48.0
 texture = SubResource("GradientTexture2D_q5jk6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 1
+z_index = 5
 position = Vector2(0, 4)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_24jr2")
@@ -931,3 +934,4 @@ animation = &"air"
 autoplay = "idle"
 
 [node name="GunSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.0

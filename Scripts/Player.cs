@@ -13,6 +13,7 @@ public partial class Player : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+	public bool markedForDeath = false;
 	bool jumpMode = false;
 	int modeChangeCooldown = 40;
 	int modeChangeCooldownTick;
@@ -170,14 +171,19 @@ public partial class Player : CharacterBody2D
 			//GD.Print("Collided with: " + body.GetType().ToString());
 
 			// if collision with "Enemy", player death
-			if (body.GetType().ToString() == "Enemy"){
-				GD.Print("death");
-				PlayerDeath();
-			}
+			// if (!markedForDeath){
+			// 	if ((body.GetType().ToString() == "EnemyG") || (body.GetType().ToString() == "EnemyA")){
+			// 		GD.Print("death");
+			// 		PlayerDeath();
+			// 	}
+			// }
+			
 		}
 	}
 
-	void PlayerDeath(){
+	public void PlayerDeath(){
+		markedForDeath = true;
+
 		// play death sound
 		SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.death, this, -2);
 
@@ -233,7 +239,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		// play sound
-		gunSoundPlayer.PitchScale = 0.9f;
+		gunSoundPlayer.PitchScale = 1.0f;
 		gunSoundPlayer.Play();
 	}
 

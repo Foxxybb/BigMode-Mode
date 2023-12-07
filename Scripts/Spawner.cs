@@ -13,6 +13,18 @@ public partial class Spawner : Node2D
 
 	List<Node2D> spawnList = new List<Node2D>();
 
+	AnimatedSprite2D warn1;
+	AnimatedSprite2D warn2;
+	AnimatedSprite2D warn3;
+	AnimatedSprite2D warn4;
+	AnimatedSprite2D warn5;
+	AnimatedSprite2D warn6;
+
+	List<AnimatedSprite2D> warnList = new List<AnimatedSprite2D>();
+	float warnTick;
+
+	List<float> tickList = new List<float>() {0,0,0,0,0,0};
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -29,6 +41,20 @@ public partial class Spawner : Node2D
 		spawnList.Add(spawn4);
 		spawnList.Add(spawn5);
 		spawnList.Add(spawn6);
+
+		warn1 = GetNode<AnimatedSprite2D>("Warn1");
+		warn2 = GetNode<AnimatedSprite2D>("Warn2");
+		warn3 = GetNode<AnimatedSprite2D>("Warn3");
+		warn4 = GetNode<AnimatedSprite2D>("Warn4");
+		warn5 = GetNode<AnimatedSprite2D>("Warn5");
+		warn6 = GetNode<AnimatedSprite2D>("Warn6");
+
+		warnList.Add(warn1);
+		warnList.Add(warn2);
+		warnList.Add(warn3);
+		warnList.Add(warn4);
+		warnList.Add(warn5);
+		warnList.Add(warn6);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,34 +62,48 @@ public partial class Spawner : Node2D
 	{
 		if(Input.IsActionJustPressed("test_action")){
 			GD.Print("spawn");
-			SpawnEnemy(0, 30);
-			SpawnEnemy(1, 20);
-			SpawnEnemy(2, 10);
-			SpawnEnemy(3, 30);
-			SpawnEnemy(4, 20);
-			SpawnEnemy(5, 10);
+			SpawnGround();
+			SpawnAir();
+		}
+
+		for (int i = 0; i < 6; i++){
+			warnList[i].SelfModulate = new Color(1, 1, 1, tickList[i]);
+			if (tickList[i] > 0){ tickList[i] -= 0.01f; }
 		}
 	}
 
-	void SpawnEnemy(int spawnIdx, int HP){
-		// spawn enemy
-		Enemy newEnemy = (Enemy)Database.Instance.enemy.Instantiate();
-		GetNode<Node2D>("/root/Scene").AddChild(newEnemy);
-
-		// set enemy position
-		newEnemy.GlobalPosition = spawnList[spawnIdx].Position;
-
-		// set enemy movement vector
-		if (spawnIdx > 2){
-			newEnemy.movementVec = new Vector2(60,0);
-		} else {
-			newEnemy.movementVec = new Vector2(-60,0);
-		}
+	void SpawnEnemy(int spawnIdx, string type){
 		
-		// set enemy HP
-		newEnemy.HP = HP;
+		// spawn enemy by type
+		switch (type){
+			case "ground": // ground
+				EnemyG newEnemyG = (EnemyG)Database.Instance.enemyG.Instantiate();
+				GetNode<Node2D>("/root/Scene").AddChild(newEnemyG);
+				newEnemyG.GlobalPosition = spawnList[spawnIdx].Position;
+			break;
+			case "air": // air
+				EnemyA newEnemyA = (EnemyA)Database.Instance.enemyA.Instantiate();
+				GetNode<Node2D>("/root/Scene").AddChild(newEnemyA);
+				newEnemyA.GlobalPosition = spawnList[spawnIdx].Position;
+			break;
+			default:
+			break;
+		}
 
+		// trigger warning
+		tickList[spawnIdx] = 2;
 	}
 
+	void SpawnGround(){
+		SpawnEnemy(0,"ground");
+		SpawnEnemy(3,"ground");
+
+		SoundManager.Instance.PlaySound(SoundManager.Instance.warn);
+	}
+
+	void SpawnAir(){
+		SpawnEnemy(1,"air");
+		SpawnEnemy(4,"air");
+	}
 	
 }

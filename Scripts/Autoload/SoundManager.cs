@@ -15,6 +15,7 @@ public partial class SoundManager : Node
 	public AudioStreamWav hit;
 	public AudioStreamWav kill;
 	public AudioStreamWav death;
+	public AudioStreamWav warn;
 
 	public override void _Ready()
 	{
@@ -32,6 +33,7 @@ public partial class SoundManager : Node
 		hit = (AudioStreamWav)GD.Load("res://Audio/Sound/HIT.wav");
 		kill = (AudioStreamWav)GD.Load("res://Audio/Sound/KILL.wav");
 		death = (AudioStreamWav)GD.Load("res://Audio/Sound/DEATH.wav");
+		warn = (AudioStreamWav)GD.Load("res://Audio/Sound/WARN.wav");
 	}
 
 	public void PlayMusic(AudioStreamWav track){

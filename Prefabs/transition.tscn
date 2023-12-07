@@ -111,7 +111,7 @@ _data = {
 }
 
 [node name="Transition" type="Node2D"]
-z_index = 5
+z_index = 10
 
 [node name="TransitionAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Bot")

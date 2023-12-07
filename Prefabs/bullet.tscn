@@ -34,6 +34,7 @@ fill_from = Vector2(1, 0)
 script = ExtResource("1_wnfk8")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yk0wa")
@@ -53,19 +54,21 @@ offset_bottom = 40.0
 texture = SubResource("GradientTexture2D_h2ten")
 
 [node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+z_index = 2
 position = Vector2(-0.00453091, 1.90735e-06)
 scale = Vector2(16.0091, 8)
 mesh = SubResource("SphereMesh_311fq")
 texture = SubResource("GradientTexture2D_nyvja")
 
 [node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+z_index = 2
 rotation = 3.14159
 scale = Vector2(16.0091, 8)
 mesh = SubResource("SphereMesh_311fq")
 texture = SubResource("GradientTexture2D_nyvja")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-z_index = -1
+z_index = 1
 scale = Vector2(20, 20)
 mesh = SubResource("SphereMesh_0wvw6")
 texture = SubResource("GradientTexture2D_7akxk")

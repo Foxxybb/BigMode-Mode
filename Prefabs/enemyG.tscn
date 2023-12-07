@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://buu5uisx3qw64"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyG.cs" id="1_iv23y"]
+[ext_resource type="Material" uid="uid://1m4yf6u8j80l" path="res://Shaders/flash.tres" id="2_d624u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cpyp"]
+size = Vector2(128, 128)
+
+[sub_resource type="Gradient" id="Gradient_wuq6v"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n335q"]
+gradient = SubResource("Gradient_wuq6v")
+fill_from = Vector2(0, 0.974359)
+fill_to = Vector2(0, 0)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_iv23y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1cpyp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = ExtResource("2_d624u")
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("GradientTexture2D_n335q")
