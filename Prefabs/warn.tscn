@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjtt5qyix84ff"]
+
+[ext_resource type="SpriteFrames" uid="uid://c57ow52g5ko7m" path="res://SpriteFrames/warn.tres" id="1_5yxab"]
+[ext_resource type="Script" path="res://Scripts/Warn.cs" id="2_6igrp"]
+
+[node name="Warn" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("1_5yxab")
+autoplay = "default"
+frame = 56
+frame_progress = 0.645633
+script = ExtResource("2_6igrp")

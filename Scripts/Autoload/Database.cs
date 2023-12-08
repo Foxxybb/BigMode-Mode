@@ -12,6 +12,7 @@ public partial class Database : Node
 	public PackedScene enemyA;
 	public PackedScene transition;
 	public PackedScene audioShot;
+	public PackedScene warn;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,6 +29,7 @@ public partial class Database : Node
 		enemyA = GD.Load<PackedScene>("res://Prefabs/enemyA.tscn");
 		transition = GD.Load<PackedScene>("res://Prefabs/transition.tscn");
 		audioShot = GD.Load<PackedScene>("res://Prefabs/AudioShot.tscn");
+		warn = GD.Load<PackedScene>("res://Prefabs/warn.tscn");
 	}
 
 }

@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_yvtev"]
 [ext_resource type="Texture2D" uid="uid://c7dgcwogpvnve" path="res://Misc/biggieBG.bmp" id="5_0c4wi"]
-[ext_resource type="SpriteFrames" uid="uid://c57ow52g5ko7m" path="res://SpriteFrames/warn.tres" id="5_5b515"]
 [ext_resource type="Script" path="res://Scripts/Spawner.cs" id="5_g1nqg"]
 [ext_resource type="Texture2D" uid="uid://dptxc3fblv621" path="res://Sprites/block.png" id="6_orvs3"]
+[ext_resource type="Script" path="res://Scripts/Timer.cs" id="7_5gnnx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcpy2"]
 size = Vector2(1280, 64)
@@ -25,14 +25,14 @@ script = ExtResource("1_a8riq")
 
 [node name="MyCamera" parent="." instance=ExtResource("2_yvtev")]
 
-[node name="Control" type="Control" parent="."]
+[node name="RestartText" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="RestartText"]
 top_level = true
 layout_mode = 0
 offset_left = 544.0
@@ -42,7 +42,7 @@ offset_bottom = 368.0
 theme_override_font_sizes/normal_font_size = 22
 text = "PRESS R TO RETRY"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="RestartText"]
 top_level = true
 layout_mode = 0
 offset_left = 528.0
@@ -183,49 +183,68 @@ offset_right = 64.0
 offset_bottom = 64.0
 color = Color(1, 0, 1, 1)
 
-[node name="Warn1" type="AnimatedSprite2D" parent="Spawner"]
-self_modulate = Color(1, 1, 1, 0)
+[node name="Warn1" type="Node2D" parent="Spawner"]
 position = Vector2(1216, 608)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("5_5b515")
-autoplay = "default"
 
-[node name="Warn2" type="AnimatedSprite2D" parent="Spawner"]
-self_modulate = Color(1, 1, 1, 0)
+[node name="ColorRect" type="ColorRect" parent="Spawner/Warn1"]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Warn2" type="Node2D" parent="Spawner"]
 position = Vector2(1216, 368)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("5_5b515")
-autoplay = "default"
 
-[node name="Warn3" type="AnimatedSprite2D" parent="Spawner"]
-self_modulate = Color(1, 1, 1, 0)
+[node name="ColorRect" type="ColorRect" parent="Spawner/Warn2"]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Warn3" type="Node2D" parent="Spawner"]
 position = Vector2(1216, 128)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("5_5b515")
-autoplay = "default"
 
-[node name="Warn4" type="AnimatedSprite2D" parent="Spawner"]
-self_modulate = Color(1, 1, 1, 0)
+[node name="ColorRect" type="ColorRect" parent="Spawner/Warn3"]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Warn4" type="Node2D" parent="Spawner"]
 position = Vector2(64, 608)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("5_5b515")
-autoplay = "default"
 
-[node name="Warn5" type="AnimatedSprite2D" parent="Spawner"]
-self_modulate = Color(1, 1, 1, 0)
+[node name="ColorRect" type="ColorRect" parent="Spawner/Warn4"]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Warn5" type="Node2D" parent="Spawner"]
 position = Vector2(64, 368)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("5_5b515")
-autoplay = "default"
 
-[node name="Warn6" type="AnimatedSprite2D" parent="Spawner"]
-self_modulate = Color(1, 1, 1, 0)
+[node name="ColorRect" type="ColorRect" parent="Spawner/Warn5"]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Warn6" type="Node2D" parent="Spawner"]
 position = Vector2(64, 128)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("5_5b515")
-autoplay = "default"
+
+[node name="ColorRect" type="ColorRect" parent="Spawner/Warn6"]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 z_index = -5
 offset_left = -64.0
 offset_top = -112.0
@@ -295,122 +314,71 @@ position = Vector2(-64, 736)
 scale = Vector2(2, 2)
 texture = ExtResource("6_orvs3")
 
-[node name="Ground5" type="Node2D" parent="."]
-visible = false
-position = Vector2(64, 0)
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1216, 480)
+scale = Vector2(6, 6)
 
-[node name="Block13" type="Sprite2D" parent="Ground5"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(1216, 544)
-scale = Vector2(4, 4)
+[node name="Block" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(-192, 0)
 texture = ExtResource("6_orvs3")
 
-[node name="Block14" type="Sprite2D" parent="Ground5"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(960, 544)
-scale = Vector2(4, 4)
+[node name="Block2" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(-128, 0)
 texture = ExtResource("6_orvs3")
 
-[node name="Block15" type="Sprite2D" parent="Ground5"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(704, 544)
-scale = Vector2(4, 4)
+[node name="Block3" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(-64, 0)
 texture = ExtResource("6_orvs3")
 
-[node name="Block16" type="Sprite2D" parent="Ground5"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(448, 544)
-scale = Vector2(4, 4)
+[node name="Block4" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
 texture = ExtResource("6_orvs3")
 
-[node name="Block17" type="Sprite2D" parent="Ground5"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(192, 544)
-scale = Vector2(4, 4)
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(1216, 96)
+scale = Vector2(6, 6)
+
+[node name="Block" type="Sprite2D" parent="Node2D2"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(-192, 0)
 texture = ExtResource("6_orvs3")
 
-[node name="Block18" type="Sprite2D" parent="Ground5"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(-64, 544)
-scale = Vector2(4, 4)
+[node name="Block2" type="Sprite2D" parent="Node2D2"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(-128, 0)
 texture = ExtResource("6_orvs3")
 
-[node name="Ground6" type="Node2D" parent="."]
-visible = false
-position = Vector2(-64, -256)
-
-[node name="Block13" type="Sprite2D" parent="Ground6"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(1216, 544)
-scale = Vector2(4, 4)
+[node name="Block3" type="Sprite2D" parent="Node2D2"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(-64, 0)
 texture = ExtResource("6_orvs3")
 
-[node name="Block14" type="Sprite2D" parent="Ground6"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(960, 544)
-scale = Vector2(4, 4)
+[node name="Block4" type="Sprite2D" parent="Node2D2"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
 texture = ExtResource("6_orvs3")
 
-[node name="Block15" type="Sprite2D" parent="Ground6"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(704, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
+[node name="Timer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Block16" type="Sprite2D" parent="Ground6"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(448, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
-
-[node name="Block17" type="Sprite2D" parent="Ground6"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(192, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
-
-[node name="Block18" type="Sprite2D" parent="Ground6"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(-64, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
-
-[node name="Ground7" type="Node2D" parent="."]
-visible = false
-position = Vector2(64, -512)
-
-[node name="Block13" type="Sprite2D" parent="Ground7"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(1216, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
-
-[node name="Block14" type="Sprite2D" parent="Ground7"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(960, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
-
-[node name="Block15" type="Sprite2D" parent="Ground7"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(704, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
-
-[node name="Block16" type="Sprite2D" parent="Ground7"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(448, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
-
-[node name="Block17" type="Sprite2D" parent="Ground7"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(192, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
-
-[node name="Block18" type="Sprite2D" parent="Ground7"]
-modulate = Color(0.670588, 0.670588, 0.670588, 1)
-position = Vector2(-64, 544)
-scale = Vector2(4, 4)
-texture = ExtResource("6_orvs3")
+[node name="Label" type="Label" parent="Timer"]
+layout_mode = 0
+offset_left = 608.0
+offset_right = 651.0
+offset_bottom = 26.0
+scale = Vector2(2, 2)
+text = "timer"
+script = ExtResource("7_5gnnx")

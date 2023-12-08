@@ -18,7 +18,8 @@ public partial class EnemyG : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		shader = (ShaderMaterial)GetNode<TextureRect>("TextureRect").Material;
+		//shader = (ShaderMaterial)GetNode<TextureRect>("TextureRect").Material;
+		shader = (ShaderMaterial)GetNode<AnimatedSprite2D>("AnimatedSprite2D").Material;
 
 		// get player node to chase
 		player = GetNode<Player>("/root/Scene/Player");

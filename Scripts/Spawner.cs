@@ -13,17 +13,14 @@ public partial class Spawner : Node2D
 
 	List<Node2D> spawnList = new List<Node2D>();
 
-	AnimatedSprite2D warn1;
-	AnimatedSprite2D warn2;
-	AnimatedSprite2D warn3;
-	AnimatedSprite2D warn4;
-	AnimatedSprite2D warn5;
-	AnimatedSprite2D warn6;
+	Node2D warn1;
+	Node2D warn2;
+	Node2D warn3;
+	Node2D warn4;
+	Node2D warn5;
+	Node2D warn6;
 
-	List<AnimatedSprite2D> warnList = new List<AnimatedSprite2D>();
-	float warnTick;
-
-	List<float> tickList = new List<float>() {0,0,0,0,0,0};
+	List<Node2D> warnList = new List<Node2D>();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -42,12 +39,12 @@ public partial class Spawner : Node2D
 		spawnList.Add(spawn5);
 		spawnList.Add(spawn6);
 
-		warn1 = GetNode<AnimatedSprite2D>("Warn1");
-		warn2 = GetNode<AnimatedSprite2D>("Warn2");
-		warn3 = GetNode<AnimatedSprite2D>("Warn3");
-		warn4 = GetNode<AnimatedSprite2D>("Warn4");
-		warn5 = GetNode<AnimatedSprite2D>("Warn5");
-		warn6 = GetNode<AnimatedSprite2D>("Warn6");
+		warn1 = GetNode<Node2D>("Warn1");
+		warn2 = GetNode<Node2D>("Warn2");
+		warn3 = GetNode<Node2D>("Warn3");
+		warn4 = GetNode<Node2D>("Warn4");
+		warn5 = GetNode<Node2D>("Warn5");
+		warn6 = GetNode<Node2D>("Warn6");
 
 		warnList.Add(warn1);
 		warnList.Add(warn2);
@@ -64,11 +61,6 @@ public partial class Spawner : Node2D
 			GD.Print("spawn");
 			SpawnGround();
 			SpawnAir();
-		}
-
-		for (int i = 0; i < 6; i++){
-			warnList[i].SelfModulate = new Color(1, 1, 1, tickList[i]);
-			if (tickList[i] > 0){ tickList[i] -= 0.01f; }
 		}
 	}
 
@@ -91,7 +83,9 @@ public partial class Spawner : Node2D
 		}
 
 		// trigger warning
-		tickList[spawnIdx] = 2;
+		Warn newWarn = (Warn)Database.Instance.warn.Instantiate();
+		this.AddChild(newWarn);
+		newWarn.GlobalPosition = warnList[spawnIdx].GlobalPosition;
 	}
 
 	void SpawnGround(){
@@ -103,7 +97,9 @@ public partial class Spawner : Node2D
 
 	void SpawnAir(){
 		SpawnEnemy(1,"air");
+		SpawnEnemy(2,"air");
 		SpawnEnemy(4,"air");
+		SpawnEnemy(5,"air");
 	}
 	
 }

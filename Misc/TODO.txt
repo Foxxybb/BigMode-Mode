@@ -69,19 +69,17 @@
 
 //-warn sound
 
--enemy design(s)?
+//-enemy design(s)?
+
+//-timer
 
 -spawn sequence
 
--kill particles
-
 -death particles
 
--grid background
+-kill particles
 
--score
-
--timer
+-add reverb/echo to kill
 
 
 

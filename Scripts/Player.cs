@@ -189,7 +189,8 @@ public partial class Player : CharacterBody2D
 
 		this.QueueFree();
 		// display retry message
-		GetNode<Control>("/root/Scene/Control").Visible = true;
+		GetNode<Control>("/root/Scene/RestartText").Visible = true;
+		Oracle.Instance.timerOn = false;
 	}
 
 	void ShootBulletHorizontal(int dir)
