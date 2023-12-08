@@ -184,6 +184,12 @@ public partial class Player : CharacterBody2D
 	public void PlayerDeath(){
 		markedForDeath = true;
 
+		// spawn particles
+		GpuParticles2D DP = (GpuParticles2D)Database.Instance.deathParticles.Instantiate();
+		GetNode<Node2D>("/root/Scene").AddChild(DP);
+		DP.GlobalPosition = this.GlobalPosition;
+		DP.Emitting = true;
+
 		// play death sound
 		SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.death, this, -2);
 
@@ -191,6 +197,7 @@ public partial class Player : CharacterBody2D
 		// display retry message
 		GetNode<Control>("/root/Scene/RestartText").Visible = true;
 		Oracle.Instance.timerOn = false;
+
 	}
 
 	void ShootBulletHorizontal(int dir)

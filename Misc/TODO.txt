@@ -73,13 +73,15 @@
 
 //-timer
 
--spawn sequence
+//-death particles
 
--death particles
+-spawn sequence
 
 -kill particles
 
 -add reverb/echo to kill
+
+-update hit sound
 
 
 
