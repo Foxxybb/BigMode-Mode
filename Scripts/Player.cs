@@ -183,6 +183,7 @@ public partial class Player : CharacterBody2D
 
 	public void PlayerDeath(){
 		markedForDeath = true;
+		Oracle.Instance.playerDead = true;
 
 		// spawn particles
 		GpuParticles2D DP = (GpuParticles2D)Database.Instance.deathParticles.Instantiate();
@@ -196,7 +197,7 @@ public partial class Player : CharacterBody2D
 		this.QueueFree();
 		// display retry message
 		GetNode<Control>("/root/Scene/RestartText").Visible = true;
-		Oracle.Instance.timerOn = false;
+		Oracle.Instance.displayTimerOn = false;
 
 	}
 

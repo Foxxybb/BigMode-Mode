@@ -15,6 +15,7 @@ public partial class Database : Node
 	public PackedScene warn;
 
 	public PackedScene deathParticles;
+	public PackedScene killParticles;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -34,6 +35,7 @@ public partial class Database : Node
 		warn = GD.Load<PackedScene>("res://Prefabs/warn.tscn");
 
 		deathParticles = GD.Load<PackedScene>("res://Prefabs/deathParticles.tscn");
+		killParticles = GD.Load<PackedScene>("res://Prefabs/killParticles.tscn");
 	}
 
 }

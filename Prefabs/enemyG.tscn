@@ -84,7 +84,7 @@
 [ext_resource type="Texture2D" uid="uid://bp35g6vsjdsta" path="res://Sprites/Gibbie/0080.png" id="82_dlrq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cpyp"]
-size = Vector2(128, 128)
+size = Vector2(96, 128)
 
 [sub_resource type="Gradient" id="Gradient_wuq6v"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)

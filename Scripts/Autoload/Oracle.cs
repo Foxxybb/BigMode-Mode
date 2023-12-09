@@ -13,8 +13,9 @@ public partial class Oracle : Node
 
 	public bool myDebug = true;
 
-	public double time;
-	public bool timerOn;
+	public double displayTime;
+	public bool displayTimerOn;
+	public bool playerDead;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,8 +31,8 @@ public partial class Oracle : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (timerOn){
-			time += delta;
+		if (displayTimerOn){
+			displayTime -= delta;
 		}
 
 		if (Input.IsActionJustPressed("reset_action"))
@@ -47,7 +48,7 @@ public partial class Oracle : Node
 			// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
 			// }
 
-			timerOn = !timerOn;
+			displayTimerOn = true;
 		}
 
 		//if (Input.IsActionJustPressed("test_action"))
@@ -68,7 +69,9 @@ public partial class Oracle : Node
 		transition = GetNode<AnimationPlayer>("/root/Scene/MyCamera/Transition/TransitionAnimator");
 		transition.AnimationFinished += _on_transition_end;
 
-		time = 0;
+		displayTimerOn = true;
+		displayTime = 60;
+		playerDead = false;
 	}
 
 	public void ResetScene(){

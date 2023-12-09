@@ -22,6 +22,8 @@ public partial class Spawner : Node2D
 
 	List<Node2D> warnList = new List<Node2D>();
 
+	int eventTick = 0; // keeps track of current spawn event
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -64,16 +66,16 @@ public partial class Spawner : Node2D
 		}
 	}
 
-	void SpawnEnemy(int spawnIdx, string type){
+	void SpawnEnemy(int spawnIdx, int type){
 		
 		// spawn enemy by type
 		switch (type){
-			case "ground": // ground
+			case 0: // ground
 				EnemyG newEnemyG = (EnemyG)Database.Instance.enemyG.Instantiate();
 				GetNode<Node2D>("/root/Scene").AddChild(newEnemyG);
 				newEnemyG.GlobalPosition = spawnList[spawnIdx].Position;
 			break;
-			case "air": // air
+			case 1: // air
 				EnemyA newEnemyA = (EnemyA)Database.Instance.enemyA.Instantiate();
 				GetNode<Node2D>("/root/Scene").AddChild(newEnemyA);
 				newEnemyA.GlobalPosition = spawnList[spawnIdx].Position;
@@ -86,20 +88,108 @@ public partial class Spawner : Node2D
 		Warn newWarn = (Warn)Database.Instance.warn.Instantiate();
 		this.AddChild(newWarn);
 		newWarn.GlobalPosition = warnList[spawnIdx].GlobalPosition;
-	}
-
-	void SpawnGround(){
-		SpawnEnemy(0,"ground");
-		SpawnEnemy(3,"ground");
 
 		SoundManager.Instance.PlaySound(SoundManager.Instance.warn);
 	}
 
+	void SpawnGround(){
+		SpawnEnemy(0,0);
+		SpawnEnemy(3,0);
+	}
+
 	void SpawnAir(){
-		SpawnEnemy(1,"air");
-		SpawnEnemy(2,"air");
-		SpawnEnemy(4,"air");
-		SpawnEnemy(5,"air");
+		SpawnEnemy(1,1);
+		SpawnEnemy(2,1);
+		SpawnEnemy(4,1);
+		SpawnEnemy(5,1);
+	}
+
+	void SpawnAirLeft(){
+		SpawnEnemy(4,1);
+		SpawnEnemy(5,1);
+	}
+
+	void SpawnAirRight(){
+		SpawnEnemy(1,1);
+		SpawnEnemy(2,1);
+	}
+
+	void SpawnMid(){
+		SpawnEnemy(1,1);
+	}
+
+	void SpawnTop(){
+		SpawnEnemy(2,1);
+		SpawnEnemy(5,1);
+	}
+
+	private void _on_event_timer_timeout()
+	{
+		if (!Oracle.Instance.playerDead){
+			// trigger next event in sequence
+			eventTick++;
+			SpawnEvent(eventTick);
+		}
+	}
+
+	void SpawnEvent(int tick){
+
+		switch (tick) {
+			case 1:
+				SpawnEnemy(0,0);
+				break;
+			case 3:
+				SpawnEnemy(4,1);
+				break;
+			case 5:
+				SpawnEnemy(2,1);
+				break;
+			case 8:
+				SpawnGround();
+				break;
+			case 10:
+				SpawnAirLeft();
+				break;
+			case 15:
+				
+				break;
+			case 18:
+				SpawnAirRight();
+				break;
+			case 20:
+				
+				break;
+			case 25:
+				SpawnGround();
+				break;
+			case 30:
+				SpawnGround();
+				break;
+			case 32:
+				SpawnMid();
+				break;
+			case 35:
+				SpawnTop();
+				break;
+			case 40:
+				SpawnGround();
+				break;
+			case 45:
+				SpawnAir();
+				break;
+			case 50:
+				SpawnGround();
+				break;
+			case 55:
+				
+				break;
+			default:
+				break;
+		}
+
 	}
 	
 }
+
+
+

@@ -7,7 +7,7 @@ public partial class EnemyG : CharacterBody2D
 	int stunTick;
 
 	public Vector2 movementVec;
-	public float moveSpeed = 60;
+	public float moveSpeed = 100;
 	public int HP = 20;
 
 	ShaderMaterial shader;
@@ -42,7 +42,14 @@ public partial class EnemyG : CharacterBody2D
 
 		// HP
 		if (HP <= 0){
-			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 0);
+
+			// spawn particles
+			GpuParticles2D KP = (GpuParticles2D)Database.Instance.killParticles.Instantiate();
+			GetNode<Node2D>("/root/Scene").AddChild(KP);
+			KP.GlobalPosition = this.GlobalPosition;
+			KP.Emitting = true;
+
+			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 3);
 			this.QueueFree();
 		}
 

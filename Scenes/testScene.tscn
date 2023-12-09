@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs5dtan0rar6x"]
+[gd_scene load_steps=13 format=3 uid="uid://bs5dtan0rar6x"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_a8riq"]
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Spawner.cs" id="5_g1nqg"]
 [ext_resource type="Texture2D" uid="uid://dptxc3fblv621" path="res://Sprites/block.png" id="6_orvs3"]
 [ext_resource type="Script" path="res://Scripts/Timer.cs" id="7_5gnnx"]
+[ext_resource type="Script" path="res://Scripts/TimerLabel.cs" id="7_x7yta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcpy2"]
 size = Vector2(1280, 64)
@@ -368,17 +369,24 @@ self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
 z_index = -10
 texture = ExtResource("6_orvs3")
 
-[node name="Timer" type="Control" parent="."]
+[node name="TimerLabel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Timer"]
+[node name="Label" type="Label" parent="TimerLabel"]
 layout_mode = 0
-offset_left = 608.0
-offset_right = 651.0
+offset_left = 599.0
+offset_right = 642.0
 offset_bottom = 26.0
 scale = Vector2(2, 2)
-text = "timer"
+text = "60.00"
+script = ExtResource("7_x7yta")
+
+[node name="EventTimer" type="Timer" parent="."]
+autostart = true
 script = ExtResource("7_5gnnx")
+
+[connection signal="timeout" from="EventTimer" to="Spawner" method="_on_event_timer_timeout"]
+[connection signal="timeout" from="EventTimer" to="EventTimer" method="_on_timeout"]

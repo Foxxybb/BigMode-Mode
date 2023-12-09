@@ -75,13 +75,22 @@
 
 //-death particles
 
--spawn sequence
+//-count down timer
 
--kill particles
+//-spawn sequence
 
--add reverb/echo to kill
+//-change enemyA behavior:
+//moves horizontally until within range of player, then chases
+
+//-chase sound
+
+//-kill particles
+
+//-add reverb/echo to kill
 
 -update hit sound
+
+-time PB
 
 
 

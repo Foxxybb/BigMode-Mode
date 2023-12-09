@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://ct5pglpl72lqp"
-path="res://.godot/imported/KILL.wav-cb49f705ebd87c13bc00da0025bdb5d7.sample"
+uid="uid://beyohh6swnq00"
+path="res://.godot/imported/CHASE.wav-0cbb3164f71553eb79897d86532a4fad.sample"
 
 [deps]
 
-source_file="res://Audio/Sound/KILL.wav"
-dest_files=["res://.godot/imported/KILL.wav-cb49f705ebd87c13bc00da0025bdb5d7.sample"]
+source_file="res://Audio/Sound/CHASE.wav"
+dest_files=["res://.godot/imported/CHASE.wav-0cbb3164f71553eb79897d86532a4fad.sample"]
 
 [params]
 

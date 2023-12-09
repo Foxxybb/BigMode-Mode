@@ -7,13 +7,15 @@ public partial class EnemyA : CharacterBody2D
 	int stunTick;
 
 	public Vector2 movementVec;
-	public float moveSpeed = 50;
+	public float moveSpeed = 120;
+	public float speedMulti = 0.5f;
 	public int HP = 8;
 
 	ShaderMaterial shader;
 	float flash;
 
 	Player player;
+	bool chasing;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,16 +30,24 @@ public partial class EnemyA : CharacterBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-
 		try
 		{
-			// if (player.GlobalPosition.X < this.GlobalPosition.X){
-			// movementVec = new Vector2(-moveSpeed,0);
-			// } else if (player.GlobalPosition.X > this.GlobalPosition.X){
-			// 	movementVec = new Vector2(moveSpeed,0);
-			// }
-			// get vector between positions
-			movementVec = (player.GlobalPosition - this.GlobalPosition) * (0.4f);
+			if (chasing){
+				movementVec = (player.GlobalPosition - this.GlobalPosition) * (speedMulti);
+			} else {
+				if (player.GlobalPosition.X < this.GlobalPosition.X){
+				movementVec = new Vector2(-moveSpeed,0);
+				} else if (player.GlobalPosition.X > this.GlobalPosition.X){
+					movementVec = new Vector2(moveSpeed,0);
+				}
+
+				//if player is within range, start chasing
+				if (this.GlobalPosition.DistanceTo(new Vector2(player.GlobalPosition.X, this.GlobalPosition.Y)) < 100){
+					chasing = true;
+					SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.chase, this, 2);
+				}
+
+			}
 		}
 		catch
 		{
@@ -48,7 +58,13 @@ public partial class EnemyA : CharacterBody2D
 		// HP
 		if (HP <= 0)
 		{
-			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 0);
+			// spawn particles
+			GpuParticles2D KP = (GpuParticles2D)Database.Instance.killParticles.Instantiate();
+			GetNode<Node2D>("/root/Scene").AddChild(KP);
+			KP.GlobalPosition = this.GlobalPosition;
+			KP.Emitting = true;
+
+			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 3);
 			this.QueueFree();
 		}
 
