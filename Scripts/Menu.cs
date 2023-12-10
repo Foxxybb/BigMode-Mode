@@ -16,6 +16,7 @@ public partial class Menu : Control
 
 	private void _on_play_pressed()
 	{
+		SoundManager.Instance.StopMusic();
 		Oracle.Instance.ChangeScene("res://Scenes/testScene.tscn");
 	}
 

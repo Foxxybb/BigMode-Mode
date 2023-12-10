@@ -12,6 +12,11 @@ public partial class TimerLabel : Label
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		this.Text = Math.Round(Oracle.Instance.displayTime, 2).ToString();
+		if (Oracle.Instance.displayTime >= 0){
+			this.Text = Math.Round(Oracle.Instance.displayTime, 2).ToString();
+		} else {
+			this.Text = "";
+		}
+		
 	}
 }

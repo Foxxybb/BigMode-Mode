@@ -1,13 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://bs5dtan0rar6x"]
+[gd_scene load_steps=18 format=3 uid="uid://bs5dtan0rar6x"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_a8riq"]
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
+[ext_resource type="AudioStream" uid="uid://bbg2m0fbp74bo" path="res://Audio/Music/delving3.wav" id="2_m7tjb"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_yvtev"]
 [ext_resource type="Texture2D" uid="uid://c7dgcwogpvnve" path="res://Misc/biggieBG.bmp" id="5_0c4wi"]
 [ext_resource type="Script" path="res://Scripts/Spawner.cs" id="5_g1nqg"]
 [ext_resource type="Texture2D" uid="uid://dptxc3fblv621" path="res://Sprites/block.png" id="6_orvs3"]
 [ext_resource type="Script" path="res://Scripts/Timer.cs" id="7_5gnnx"]
 [ext_resource type="Script" path="res://Scripts/TimerLabel.cs" id="7_x7yta"]
+[ext_resource type="Script" path="res://Scripts/PBLabel.cs" id="9_63s72"]
+[ext_resource type="Script" path="res://Scripts/MovingBG.cs" id="10_gmjek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcpy2"]
 size = Vector2(1280, 64)
@@ -21,8 +24,17 @@ size = Vector2(1280, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jdyi"]
 size = Vector2(64, 672)
 
+[sub_resource type="Gradient" id="Gradient_2wu4p"]
+offsets = PackedFloat32Array(0, 0.227119, 0.40339, 0.454237, 0.498305, 0.552542, 0.60678, 0.769492, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.0719424, 0, 0, 1, 0, 0, 0, 1, 0.478431, 0, 0, 1, 1, 1, 1, 1, 0.529412, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gs8yk"]
+gradient = SubResource("Gradient_2wu4p")
+metadata/_snap_enabled = true
+
 [node name="Scene" type="Node2D"]
 script = ExtResource("1_a8riq")
+musicForScene = ExtResource("2_m7tjb")
 
 [node name="MyCamera" parent="." instance=ExtResource("2_yvtev")]
 
@@ -245,13 +257,19 @@ offset_right = 16.0
 offset_bottom = 16.0
 
 [node name="Background" type="TextureRect" parent="."]
-visible = false
-z_index = -5
-offset_left = -64.0
-offset_top = -112.0
-offset_right = 1344.0
-offset_bottom = 720.0
+z_index = -15
+offset_left = -32.0
+offset_top = -96.0
+offset_right = 1376.0
+offset_bottom = 736.0
+scale = Vector2(0.95, 0.95)
 texture = ExtResource("5_0c4wi")
+
+[node name="Background2" type="TextureRect" parent="."]
+z_index = -15
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = SubResource("GradientTexture2D_gs8yk")
 
 [node name="Ground2" type="Node2D" parent="."]
 
@@ -315,60 +333,6 @@ position = Vector2(-64, 736)
 scale = Vector2(2, 2)
 texture = ExtResource("6_orvs3")
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(1216, 480)
-scale = Vector2(6, 6)
-
-[node name="Block" type="Sprite2D" parent="Node2D"]
-self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
-z_index = -10
-position = Vector2(-192, 0)
-texture = ExtResource("6_orvs3")
-
-[node name="Block2" type="Sprite2D" parent="Node2D"]
-self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
-z_index = -10
-position = Vector2(-128, 0)
-texture = ExtResource("6_orvs3")
-
-[node name="Block3" type="Sprite2D" parent="Node2D"]
-self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
-z_index = -10
-position = Vector2(-64, 0)
-texture = ExtResource("6_orvs3")
-
-[node name="Block4" type="Sprite2D" parent="Node2D"]
-self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
-z_index = -10
-texture = ExtResource("6_orvs3")
-
-[node name="Node2D2" type="Node2D" parent="."]
-position = Vector2(1216, 96)
-scale = Vector2(6, 6)
-
-[node name="Block" type="Sprite2D" parent="Node2D2"]
-self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
-z_index = -10
-position = Vector2(-192, 0)
-texture = ExtResource("6_orvs3")
-
-[node name="Block2" type="Sprite2D" parent="Node2D2"]
-self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
-z_index = -10
-position = Vector2(-128, 0)
-texture = ExtResource("6_orvs3")
-
-[node name="Block3" type="Sprite2D" parent="Node2D2"]
-self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
-z_index = -10
-position = Vector2(-64, 0)
-texture = ExtResource("6_orvs3")
-
-[node name="Block4" type="Sprite2D" parent="Node2D2"]
-self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
-z_index = -10
-texture = ExtResource("6_orvs3")
-
 [node name="TimerLabel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -384,9 +348,129 @@ scale = Vector2(2, 2)
 text = "60.00"
 script = ExtResource("7_x7yta")
 
+[node name="Label2" type="Label" parent="TimerLabel"]
+self_modulate = Color(0.870588, 0.972549, 0, 1)
+layout_mode = 0
+offset_left = 599.0
+offset_top = 50.0
+offset_right = 642.0
+offset_bottom = 100.0
+scale = Vector2(2, 2)
+text = "60.00"
+script = ExtResource("9_63s72")
+
+[node name="MovingBG" type="Node2D" parent="."]
+script = ExtResource("10_gmjek")
+
+[node name="1" type="Node2D" parent="MovingBG"]
+position = Vector2(128, 384)
+scale = Vector2(4, 4)
+
+[node name="Block" type="Sprite2D" parent="MovingBG/1"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+texture = ExtResource("6_orvs3")
+
+[node name="Block2" type="Sprite2D" parent="MovingBG/1"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, 64)
+texture = ExtResource("6_orvs3")
+
+[node name="Block3" type="Sprite2D" parent="MovingBG/1"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, -64)
+texture = ExtResource("6_orvs3")
+
+[node name="2" type="Node2D" parent="MovingBG"]
+position = Vector2(384, 384)
+scale = Vector2(4, 4)
+
+[node name="Block" type="Sprite2D" parent="MovingBG/2"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+texture = ExtResource("6_orvs3")
+
+[node name="Block2" type="Sprite2D" parent="MovingBG/2"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, 64)
+texture = ExtResource("6_orvs3")
+
+[node name="Block3" type="Sprite2D" parent="MovingBG/2"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, -64)
+texture = ExtResource("6_orvs3")
+
+[node name="3" type="Node2D" parent="MovingBG"]
+position = Vector2(640, 384)
+scale = Vector2(4, 4)
+
+[node name="Block" type="Sprite2D" parent="MovingBG/3"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+texture = ExtResource("6_orvs3")
+
+[node name="Block2" type="Sprite2D" parent="MovingBG/3"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, 64)
+texture = ExtResource("6_orvs3")
+
+[node name="Block3" type="Sprite2D" parent="MovingBG/3"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, -64)
+texture = ExtResource("6_orvs3")
+
+[node name="4" type="Node2D" parent="MovingBG"]
+position = Vector2(896, 384)
+scale = Vector2(4, 4)
+
+[node name="Block" type="Sprite2D" parent="MovingBG/4"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+texture = ExtResource("6_orvs3")
+
+[node name="Block2" type="Sprite2D" parent="MovingBG/4"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, 64)
+texture = ExtResource("6_orvs3")
+
+[node name="Block3" type="Sprite2D" parent="MovingBG/4"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, -64)
+texture = ExtResource("6_orvs3")
+
+[node name="5" type="Node2D" parent="MovingBG"]
+position = Vector2(1152, 384)
+scale = Vector2(4, 4)
+
+[node name="Block" type="Sprite2D" parent="MovingBG/5"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+texture = ExtResource("6_orvs3")
+
+[node name="Block2" type="Sprite2D" parent="MovingBG/5"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, 64)
+texture = ExtResource("6_orvs3")
+
+[node name="Block3" type="Sprite2D" parent="MovingBG/5"]
+self_modulate = Color(0.309804, 0.309804, 0.309804, 1)
+z_index = -10
+position = Vector2(0, -64)
+texture = ExtResource("6_orvs3")
+
 [node name="EventTimer" type="Timer" parent="."]
 autostart = true
 script = ExtResource("7_5gnnx")
 
 [connection signal="timeout" from="EventTimer" to="Spawner" method="_on_event_timer_timeout"]
+[connection signal="timeout" from="EventTimer" to="MovingBG" method="_on_event_timer_timeout"]
 [connection signal="timeout" from="EventTimer" to="EventTimer" method="_on_timeout"]

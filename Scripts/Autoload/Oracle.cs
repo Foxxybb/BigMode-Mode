@@ -14,6 +14,7 @@ public partial class Oracle : Node
 	public bool myDebug = true;
 
 	public double displayTime;
+	public double PBTime = 60;
 	public bool displayTimerOn;
 	public bool playerDead;
 

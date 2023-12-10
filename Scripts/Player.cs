@@ -194,6 +194,17 @@ public partial class Player : CharacterBody2D
 		// play death sound
 		SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.death, this, -2);
 
+		// stop music
+		SoundManager.Instance.StopMusic();
+
+		// update PB time
+		if (Oracle.Instance.PBTime > Oracle.Instance.displayTime){
+			Oracle.Instance.PBTime = Oracle.Instance.displayTime;
+			if (Oracle.Instance.PBTime < 0){
+				Oracle.Instance.PBTime = 0;
+			}
+		}
+		
 		this.QueueFree();
 		// display retry message
 		GetNode<Control>("/root/Scene/RestartText").Visible = true;

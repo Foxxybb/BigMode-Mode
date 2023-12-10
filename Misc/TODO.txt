@@ -88,12 +88,28 @@
 
 //-add reverb/echo to kill
 
--update hit sound
+//-music
 
--time PB
+//-update shoot
 
+//-update hit sound
 
+//-music stop on death
 
--music
+//-time PB
+
+//-menu music
+
+//-background animation
+
+-Tutorial room
+
+-FINAL BOSS?
+
+-VOICES
+
+-gamepad controls
 
 -about page
+
+-Main Menu

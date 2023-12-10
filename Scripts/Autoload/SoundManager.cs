@@ -44,6 +44,10 @@ public partial class SoundManager : Node
 		musicPlayer.Play();
 	}
 
+	public void StopMusic(){
+		musicPlayer.Stop();
+	}
+
 	// used for menu sounds
 	public void PlaySound(AudioStreamWav sound){
 		soundPlayer.Stream = sound;
