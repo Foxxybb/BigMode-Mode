@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_a8riq"]
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="1_q6ydu"]
-[ext_resource type="AudioStream" uid="uid://bbg2m0fbp74bo" path="res://Audio/Music/delving3.wav" id="2_m7tjb"]
+[ext_resource type="AudioStream" uid="uid://bfleq1xc0bjys" path="res://Audio/Music/delving3.wav" id="2_m7tjb"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_yvtev"]
 [ext_resource type="Texture2D" uid="uid://c7dgcwogpvnve" path="res://Misc/biggieBG.bmp" id="5_0c4wi"]
 [ext_resource type="Script" path="res://Scripts/Spawner.cs" id="5_g1nqg"]
