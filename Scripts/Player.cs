@@ -192,7 +192,7 @@ public partial class Player : CharacterBody2D
 		DP.Emitting = true;
 
 		// play death sound
-		SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.death, this, -2);
+		SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.death, this, 3);
 
 		// stop music
 		SoundManager.Instance.StopMusic();
@@ -279,7 +279,8 @@ public partial class Player : CharacterBody2D
 			// play animation
 			ChangeAnimationState(FIRE);
 			// play sound
-			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.fire, this, 1);
+			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.fire, this, 4);
+			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.voice_fire, this, 6);
 			
 		} else {
 			leftArm.Position = leftArm.Position + new Vector2(28,32);
@@ -290,7 +291,8 @@ public partial class Player : CharacterBody2D
 			// play animation
 			ChangeAnimationState(JUMP);
 			// play sound
-			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.jump, this, 1);
+			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.jump, this, 4);
+			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.voice_jump, this, 5);
 		}
 
 		jumpMode = !jumpMode;

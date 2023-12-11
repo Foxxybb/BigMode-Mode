@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxn2nbfj4ink6"]
+[gd_scene load_steps=7 format=3 uid="uid://bxn2nbfj4ink6"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_mhyh2"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_1isht"]
 [ext_resource type="Script" path="res://Scripts/Menu.cs" id="3_eyw6s"]
+[ext_resource type="Texture2D" uid="uid://brr1d0o4c5thn" path="res://Misc/Mode.png" id="4_rtnhv"]
+[ext_resource type="Texture2D" uid="uid://b2e3lkyptugdn" path="res://Misc/Biggieblast.png" id="5_6f8wn"]
+[ext_resource type="Texture2D" uid="uid://8in03x32ecg" path="res://Misc/epic2.jpg" id="6_6f7bg"]
 
 [node name="Scene" type="Node2D"]
 script = ExtResource("1_mhyh2")
@@ -29,19 +32,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = 64.0
-offset_right = 80.0
-offset_bottom = 288.0
+offset_left = -160.0
+offset_top = -32.0
+offset_bottom = 192.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(2, 2)
 
 [node name="Play" type="Button" parent="Control/VBoxContainer"]
+z_index = 1
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
 text = "Play"
 
 [node name="Quit" type="Button" parent="Control/VBoxContainer"]
+z_index = 1
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Play")
 text = "Quit"
@@ -56,28 +61,187 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "BIGGIE BLASTER"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="Control"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_left = -160.0
-offset_top = -448.0
-offset_right = 192.0
-offset_bottom = -336.0
+offset_left = -32.0
+offset_top = -528.0
+offset_right = 320.0
+offset_bottom = -400.0
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "by Caleb Richardson
-@lilfoxbot"
+text = "by"
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = -576.0
+offset_right = 672.0
+offset_bottom = -320.0
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Made in Godot 4.0
+Music: Renoise
+Assets: Blender
+Backgrounds: Bryce3D
+Sounds: LabChirp, Reaper
+Voices: My lil sis :)"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -176.0
+offset_top = -464.0
+offset_right = 176.0
+offset_bottom = -352.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Caleb Richardson"
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -176.0
+offset_top = -460.0
+offset_right = 176.0
+offset_bottom = -346.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "
+	  @lilfoxbot"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_left = -224.0
-offset_top = -288.0
-offset_right = 256.0
-offset_bottom = -208.0
+offset_left = -144.0
+offset_top = -320.0
+offset_right = 336.0
+offset_bottom = -272.0
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "for BigMode game jam: \"Mode\"
+text = "Made in 2 weeks for
 
 "
+scroll_active = false
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -112.0
+offset_top = -160.0
+offset_right = 144.0
+offset_bottom = -80.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Theme: \"Mode\"
+
+"
+scroll_active = false
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -240.0
+offset_top = -256.0
+offset_right = 240.0
+offset_bottom = -176.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Bigmode Game Jam 2023
+
+
+"
+scroll_active = false
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -176.0
+offset_top = -608.0
+offset_right = 160.0
+offset_bottom = -536.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect9" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = 272.0
+offset_top = -592.0
+offset_right = 624.0
+offset_bottom = -360.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect5" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -48.0
+offset_top = -528.0
+offset_right = 16.0
+offset_bottom = -480.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect6" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -128.0
+offset_top = -400.0
+offset_right = 96.0
+offset_bottom = -352.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect7" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -160.0
+offset_top = -320.0
+offset_right = 160.0
+offset_bottom = -272.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -192.0
+offset_top = -464.0
+offset_right = 176.0
+offset_bottom = -408.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect3" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -240.0
+offset_top = -256.0
+offset_right = 240.0
+offset_bottom = -200.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect4" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -128.0
+offset_top = -160.0
+offset_right = 128.0
+offset_bottom = -112.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect8" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -640.0
+offset_top = -608.0
+offset_right = -240.0
+offset_bottom = 160.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Mode" type="Sprite2D" parent="."]
+position = Vector2(208, 191)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_rtnhv")
+
+[node name="Biggieblast" type="Sprite2D" parent="."]
+position = Vector2(208, 543)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_6f8wn")
+
+[node name="Epic2" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(656, 368)
+texture = ExtResource("6_6f7bg")
 
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Quit" to="Control" method="_on_quit_pressed"]

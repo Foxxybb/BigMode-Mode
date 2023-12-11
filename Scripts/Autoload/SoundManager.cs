@@ -18,6 +18,10 @@ public partial class SoundManager : Node
 	public AudioStreamWav warn;
 	public AudioStreamWav chase;
 
+	// Voices
+	public AudioStreamWav voice_jump;
+	public AudioStreamWav voice_fire;
+
 	public override void _Ready()
 	{
 		Instance = this;
@@ -25,6 +29,7 @@ public partial class SoundManager : Node
 		soundPlayer = (AudioStreamPlayer)this.GetChild(1);
 
 		LoadSounds();
+		LoadVoices();
 	}
 
 	void LoadSounds(){
@@ -36,6 +41,11 @@ public partial class SoundManager : Node
 		death = (AudioStreamWav)GD.Load("res://Audio/Sound/DEATH.wav");
 		warn = (AudioStreamWav)GD.Load("res://Audio/Sound/WARN.wav");
 		chase = (AudioStreamWav)GD.Load("res://Audio/Sound/CHASE.wav");
+	}
+
+	void LoadVoices(){
+		voice_jump = (AudioStreamWav)GD.Load("res://Audio/Voice/RocketP2.wav");
+		voice_fire = (AudioStreamWav)GD.Load("res://Audio/Voice/FireP.wav");
 	}
 
 	public void PlayMusic(AudioStreamWav track){

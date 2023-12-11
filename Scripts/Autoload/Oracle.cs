@@ -38,18 +38,25 @@ public partial class Oracle : Node
 
 		if (Input.IsActionJustPressed("reset_action"))
 		{
-			ResetScene();
+			//ResetScene();
+			// if current scene is not gameplay scene, change scene to Tutorial
+			// else, change scene to main game scene
+			if (GetNode<GameScene>("/root/Scene").isGameplayScene){
+				ChangeScene("res://Scenes/testScene.tscn");
+			} else {
+				ChangeScene("res://Scenes/training.tscn");
+			};
+
+			SoundManager.Instance.StopMusic();
 		}
 
 		if (Input.IsActionJustPressed("test_action"))
 		{
-			// if (DisplayServer.WindowGetMode() == (DisplayServer.WindowMode.ExclusiveFullscreen)){
-			// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-			// } else {
-			// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
-			// }
-
-			displayTimerOn = true;
+			if (DisplayServer.WindowGetMode() == (DisplayServer.WindowMode.ExclusiveFullscreen)){
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			} else {
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
+			}
 		}
 
 		//if (Input.IsActionJustPressed("test_action"))

@@ -44,7 +44,7 @@ public partial class EnemyA : CharacterBody2D
 				//if player is within range, start chasing
 				if (this.GlobalPosition.DistanceTo(new Vector2(player.GlobalPosition.X, this.GlobalPosition.Y)) < 100){
 					chasing = true;
-					SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.chase, this, 2);
+					SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.chase, this, 4);
 				}
 
 			}
@@ -64,7 +64,7 @@ public partial class EnemyA : CharacterBody2D
 			KP.GlobalPosition = this.GlobalPosition;
 			KP.Emitting = true;
 
-			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 3);
+			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 5);
 			this.QueueFree();
 		}
 

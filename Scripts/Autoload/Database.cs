@@ -5,7 +5,11 @@ public partial class Database : Node
 {
 	public static Database Instance;
 
-	//prefabs
+	// game scenes
+	public PackedScene tutScene;
+	public PackedScene mainGameScene;
+
+	// prefabs
 	public PackedScene bullet;
 	public PackedScene enemy;
 	public PackedScene enemyG;
@@ -22,6 +26,8 @@ public partial class Database : Node
 	{
 		Instance = this;
 
+		//LoadScenes();
+
 		LoadStuffs();
 	}
 
@@ -36,6 +42,11 @@ public partial class Database : Node
 
 		deathParticles = GD.Load<PackedScene>("res://Prefabs/deathParticles.tscn");
 		killParticles = GD.Load<PackedScene>("res://Prefabs/killParticles.tscn");
+	}
+
+	void LoadScenes(){
+		tutScene = GD.Load<PackedScene>("res://Scenes/training.tscn");
+		mainGameScene = GD.Load<PackedScene>("res://Scenes/testScene.tscn");
 	}
 
 }

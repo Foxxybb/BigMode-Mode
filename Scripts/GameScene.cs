@@ -4,6 +4,9 @@ using System;
 public partial class GameScene : Node2D
 {
 	[Export] public AudioStreamWav musicForScene;
+	[Export] public AudioStreamWav soundForScene;
+
+	[Export] public bool isGameplayScene;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -12,6 +15,10 @@ public partial class GameScene : Node2D
 
 		if (musicForScene != null){
 			SoundManager.Instance.PlayMusic(musicForScene);
+		}
+
+		if (soundForScene != null){
+			SoundManager.Instance.PlaySound(soundForScene);
 		}
 	}
 

@@ -102,14 +102,18 @@
 
 //-background animation
 
--Tutorial room
+//-adjust audio
+
+//-Tutorial room
+
+//-VOICES
+
+//-gamepad controls
+
+//-game start logic
+
+//-about page
 
 -FINAL BOSS?
 
--VOICES
-
--gamepad controls
-
--about page
-
--Main Menu
+-Title Screen

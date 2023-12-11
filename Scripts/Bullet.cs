@@ -47,13 +47,13 @@ public partial class Bullet : Node2D
 			case "EnemyG":
 				EnemyG enemyG = (EnemyG)body; // get enemy script
 				enemyG.TakeDamage();
-				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -3);
+				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, 0);
 				Collide();
 				break;
 			case "EnemyA":
 				EnemyA enemyA = (EnemyA)body; // get enemy script
 				enemyA.TakeDamage();
-				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -3);
+				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, 0);
 				Collide();
 				break;
 			default:
