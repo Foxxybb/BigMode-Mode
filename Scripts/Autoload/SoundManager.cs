@@ -17,6 +17,7 @@ public partial class SoundManager : Node
 	public AudioStreamWav death;
 	public AudioStreamWav warn;
 	public AudioStreamWav chase;
+	public AudioStreamWav aggro;
 
 	// Voices
 	public AudioStreamWav voice_jump;
@@ -41,6 +42,7 @@ public partial class SoundManager : Node
 		death = (AudioStreamWav)GD.Load("res://Audio/Sound/DEATH.wav");
 		warn = (AudioStreamWav)GD.Load("res://Audio/Sound/WARN.wav");
 		chase = (AudioStreamWav)GD.Load("res://Audio/Sound/CHASE.wav");
+		aggro = (AudioStreamWav)GD.Load("res://Audio/Sound/AGGRO.wav");
 	}
 
 	void LoadVoices(){
@@ -87,6 +89,20 @@ public partial class SoundManager : Node
 		newAudioShot.Position = node.Position;
 		//then play sound from that node,
 		newAudioShot.VolumeDb = db;
+		newAudioShot.Stream = sound;
+		newAudioShot.Play();
+		//the Audioshot script should then queueFree the node when audio is finished playing
+	}
+
+	public void PlaySoundAtNode(AudioStreamWav sound, Node2D node, float db, float pitch){ // optional pitch adjustment
+		// add new custom AudioStreamPlayer2D to node,
+		AudioShot newAudioShot = (AudioShot)Database.Instance.audioShot.Instantiate();
+		newAudioShot.AddToGroup("AudioShots");
+		GetNode<Node2D>("/root/Scene").AddChild(newAudioShot);
+		newAudioShot.Position = node.Position;
+		//then play sound from that node,
+		newAudioShot.VolumeDb = db;
+		newAudioShot.PitchScale = pitch;
 		newAudioShot.Stream = sound;
 		newAudioShot.Play();
 		//the Audioshot script should then queueFree the node when audio is finished playing

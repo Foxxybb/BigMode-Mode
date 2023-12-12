@@ -5,6 +5,7 @@ public partial class GameScene : Node2D
 {
 	[Export] public AudioStreamWav musicForScene;
 	[Export] public AudioStreamWav soundForScene;
+	[Export] public AudioStreamWav soundOnExit;
 
 	[Export] public bool isGameplayScene;
 

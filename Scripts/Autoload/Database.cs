@@ -14,6 +14,7 @@ public partial class Database : Node
 	public PackedScene enemy;
 	public PackedScene enemyG;
 	public PackedScene enemyA;
+	public PackedScene enemyB;
 	public PackedScene transition;
 	public PackedScene audioShot;
 	public PackedScene warn;
@@ -36,6 +37,7 @@ public partial class Database : Node
 		enemy = GD.Load<PackedScene>("res://Prefabs/enemy.tscn");
 		enemyG = GD.Load<PackedScene>("res://Prefabs/enemyG.tscn");
 		enemyA = GD.Load<PackedScene>("res://Prefabs/enemyA.tscn");
+		enemyB = GD.Load<PackedScene>("res://Prefabs/enemyB.tscn");
 		transition = GD.Load<PackedScene>("res://Prefabs/transition.tscn");
 		audioShot = GD.Load<PackedScene>("res://Prefabs/AudioShot.tscn");
 		warn = GD.Load<PackedScene>("res://Prefabs/warn.tscn");

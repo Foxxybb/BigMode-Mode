@@ -114,6 +114,21 @@
 
 //-about page
 
+//-go voice
+
 -FINAL BOSS?
+    //-background enemy
+    //-big enemy roar
+    //-big enemy horizontal
+    //-big warn
+    //-big spawns
+    //-spawn sequence
+    
+    -background enemy movement
+    -big enemy vertical
+    
+    -final music
+    -victory voice
+
 
 -Title Screen

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyr6348gu3swq"]
+[gd_scene load_steps=7 format=3 uid="uid://dyr6348gu3swq"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_0kc41"]
 [ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_3skm6"]
 [ext_resource type="AudioStream" uid="uid://bn2wvg36nu6li" path="res://Audio/Music/delvingIntro.wav" id="2_nsphu"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_y4exk"]
 [ext_resource type="AudioStream" uid="uid://uicq382b53l4" path="res://Audio/Voice/Title.wav" id="3_otoxu"]
+[ext_resource type="Texture2D" uid="uid://ct8a7ri5p0uuk" path="res://Misc/render3.png" id="6_dis61"]
 
 [node name="Scene" type="Node2D"]
 script = ExtResource("1_0kc41")
@@ -71,6 +72,12 @@ offset_bottom = -432.0
 theme_override_font_sizes/normal_font_size = 66
 bbcode_enabled = true
 text = "BLASTER"
+
+[node name="BiggieBg" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(640, 368)
+scale = Vector2(1, 1.02222)
+texture = ExtResource("6_dis61")
 
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/About" to="Control" method="_on_about_pressed"]

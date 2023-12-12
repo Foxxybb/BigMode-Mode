@@ -54,6 +54,8 @@ public partial class Player : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
+		//GD.Print(this.Position);
+
 		if (modeChangeCooldownTick <= 0)
 		{
 			// shoot left
@@ -280,7 +282,7 @@ public partial class Player : CharacterBody2D
 			ChangeAnimationState(FIRE);
 			// play sound
 			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.fire, this, 4);
-			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.voice_fire, this, 6);
+			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.voice_fire, this, 8);
 			
 		} else {
 			leftArm.Position = leftArm.Position + new Vector2(28,32);
@@ -292,7 +294,7 @@ public partial class Player : CharacterBody2D
 			ChangeAnimationState(JUMP);
 			// play sound
 			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.jump, this, 4);
-			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.voice_jump, this, 5);
+			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.voice_jump, this, 8);
 		}
 
 		jumpMode = !jumpMode;

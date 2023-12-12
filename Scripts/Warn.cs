@@ -3,7 +3,7 @@ using System;
 
 public partial class Warn : AnimatedSprite2D
 {
-	float fadeTick = 4f;
+	public float fadeTick = 4f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

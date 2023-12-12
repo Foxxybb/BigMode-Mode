@@ -41,11 +41,17 @@ public partial class Oracle : Node
 			//ResetScene();
 			// if current scene is not gameplay scene, change scene to Tutorial
 			// else, change scene to main game scene
-			if (GetNode<GameScene>("/root/Scene").isGameplayScene){
+			var curScene = GetNode<GameScene>("/root/Scene");
+
+			if (curScene.isGameplayScene){
 				ChangeScene("res://Scenes/testScene.tscn");
 			} else {
 				ChangeScene("res://Scenes/training.tscn");
 			};
+
+			if (curScene.soundOnExit != null){
+				SoundManager.Instance.PlaySound(curScene.soundOnExit);
+			}
 
 			SoundManager.Instance.StopMusic();
 		}

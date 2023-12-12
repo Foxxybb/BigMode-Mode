@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://p21qdv7h7myw"]
+[gd_scene load_steps=17 format=3 uid="uid://p21qdv7h7myw"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_u7xep"]
+[ext_resource type="AudioStream" uid="uid://bl2486tulwjr6" path="res://Audio/Voice/Go.wav" id="2_xo1od"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="3_2sgqs"]
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="4_vkjj1"]
 [ext_resource type="Texture2D" uid="uid://c7dgcwogpvnve" path="res://Misc/biggieBG.bmp" id="6_85pmt"]
@@ -32,6 +33,7 @@ metadata/_snap_enabled = true
 
 [node name="Scene" type="Node2D"]
 script = ExtResource("1_u7xep")
+soundOnExit = ExtResource("2_xo1od")
 isGameplayScene = true
 
 [node name="MyCamera" parent="." instance=ExtResource("3_2sgqs")]

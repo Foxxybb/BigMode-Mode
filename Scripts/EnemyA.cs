@@ -64,7 +64,7 @@ public partial class EnemyA : CharacterBody2D
 			KP.GlobalPosition = this.GlobalPosition;
 			KP.Emitting = true;
 
-			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 5);
+			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 5, 1.1f);
 			this.QueueFree();
 		}
 
