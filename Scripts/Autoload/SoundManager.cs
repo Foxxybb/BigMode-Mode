@@ -26,6 +26,10 @@ public partial class SoundManager : Node
 	public AudioStreamWav voice_fire;
 	public AudioStreamWav voice_victory;
 
+	// Music
+	public AudioStreamWav introMusic;
+	public AudioStreamWav bossMusic;
+
 	public override void _Ready()
 	{
 		Instance = this;
@@ -54,6 +58,11 @@ public partial class SoundManager : Node
 		voice_jump = (AudioStreamWav)GD.Load("res://Audio/Voice/RocketP2.wav");
 		voice_fire = (AudioStreamWav)GD.Load("res://Audio/Voice/FireP.wav");
 		voice_victory = (AudioStreamWav)GD.Load("res://Audio/Voice/Victory.wav");
+	}
+
+	void LoadMusic(){
+		introMusic = (AudioStreamWav)GD.Load("res://Audio/Music/delvingIntro.wav");
+		//bossMusic = (AudioStreamWav)GD.Load("res://Audio/Music/delvingIntro.wav");
 	}
 
 	public void PlayMusic(AudioStreamWav track){

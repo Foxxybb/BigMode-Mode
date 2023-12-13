@@ -87,6 +87,7 @@ public partial class Oracle : Node
 				case 660:
 					endTick = 0;
 					gameIsOver = false;
+					SoundManager.Instance.PlayMusic(SoundManager.Instance.introMusic);
 					break;
 				default:
 					break;
