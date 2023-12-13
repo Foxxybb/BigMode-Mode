@@ -9,11 +9,15 @@ public partial class MovingBG : Node2D
 	Node2D block4;
 	Node2D block5;
 
+	AnimatedSprite2D clyde;
+
 	bool move1;
 	bool move2;
 	bool move3;
 	bool move4;
 	bool move5;
+
+	bool moveClyde;
 
 	int eventTick = 0;
 	float blockSpeed = 1;
@@ -27,6 +31,8 @@ public partial class MovingBG : Node2D
 		block3 = this.GetChild<Node2D>(2);
 		block4 = this.GetChild<Node2D>(3);
 		block5 = this.GetChild<Node2D>(4);
+
+		clyde = this.GetChildOrNull<AnimatedSprite2D>(5);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,8 +54,10 @@ public partial class MovingBG : Node2D
 			if (move5){
 				block5.Position = new Vector2(block5.Position.X, block5.Position.Y + blockSpeed);
 			}
+			if (moveClyde){
+				clyde.Position = new Vector2(clyde.Position.X, clyde.Position.Y + blockSpeed*2);
+			}
 		}
-		
 	}
 
 	private void _on_event_timer_timeout()
@@ -81,7 +89,8 @@ public partial class MovingBG : Node2D
 			case 50:
 				move3 = true;
 				break;
-			case 60:
+			case 72:
+				moveClyde = true;
 				break;
 			default:
 				break;

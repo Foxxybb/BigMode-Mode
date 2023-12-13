@@ -124,11 +124,21 @@
     //-big spawns
     //-spawn sequence
     
-    -background enemy movement
-    -big enemy vertical
-    
-    -final music
-    -victory voice
+    //-background enemy movement
 
+    //-big enemy vertical
+
+    //- big enemy particles
+    //- big enemy kill sound
+
+    //-background fade
+
+    //-victory voice
+
+    -victory Text
+
+    -final music
 
 -Title Screen
+ -Title Text
+ -Title biggie render

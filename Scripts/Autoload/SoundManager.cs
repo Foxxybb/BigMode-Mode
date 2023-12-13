@@ -14,6 +14,8 @@ public partial class SoundManager : Node
 	public AudioStreamWav shot;
 	public AudioStreamWav hit;
 	public AudioStreamWav kill;
+	public AudioStreamWav bigkill;
+	public AudioStreamWav finalkill;
 	public AudioStreamWav death;
 	public AudioStreamWav warn;
 	public AudioStreamWav chase;
@@ -22,6 +24,7 @@ public partial class SoundManager : Node
 	// Voices
 	public AudioStreamWav voice_jump;
 	public AudioStreamWav voice_fire;
+	public AudioStreamWav voice_victory;
 
 	public override void _Ready()
 	{
@@ -39,6 +42,8 @@ public partial class SoundManager : Node
 		shot = (AudioStreamWav)GD.Load("res://Audio/Sound/SHOT.wav");
 		hit = (AudioStreamWav)GD.Load("res://Audio/Sound/HIT.wav");
 		kill = (AudioStreamWav)GD.Load("res://Audio/Sound/KILL.wav");
+		bigkill = (AudioStreamWav)GD.Load("res://Audio/Sound/BIGKILL.wav");
+		finalkill = (AudioStreamWav)GD.Load("res://Audio/Sound/FINALKILL.wav");
 		death = (AudioStreamWav)GD.Load("res://Audio/Sound/DEATH.wav");
 		warn = (AudioStreamWav)GD.Load("res://Audio/Sound/WARN.wav");
 		chase = (AudioStreamWav)GD.Load("res://Audio/Sound/CHASE.wav");
@@ -48,6 +53,7 @@ public partial class SoundManager : Node
 	void LoadVoices(){
 		voice_jump = (AudioStreamWav)GD.Load("res://Audio/Voice/RocketP2.wav");
 		voice_fire = (AudioStreamWav)GD.Load("res://Audio/Voice/FireP.wav");
+		voice_victory = (AudioStreamWav)GD.Load("res://Audio/Voice/Victory.wav");
 	}
 
 	public void PlayMusic(AudioStreamWav track){

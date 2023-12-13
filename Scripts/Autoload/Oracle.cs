@@ -18,12 +18,16 @@ public partial class Oracle : Node
 	public bool displayTimerOn;
 	public bool playerDead;
 
+	int endTick;
+	bool gameIsOver;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		Instance = this;
 
 		Events.Instance.GameSceneReady += () => OnNewScene();
+		Events.Instance.FinalKill += () => TriggerEndSequence();
 
 		Viewport root = GetTree().Root;
 		CurrentScene = root.GetChild(root.GetChildCount() - 1);
@@ -65,16 +69,35 @@ public partial class Oracle : Node
 			}
 		}
 
-		//if (Input.IsActionJustPressed("test_action"))
-		//{
-		//	GD.Print("test");
-		//}
+		if (gameIsOver){
+			endTick += 1;
 
-		//if (Input.IsActionJustPressed("debug_action"))
-		//{
-		//	myDebug = !myDebug;
-		//	GD.Print("debug: " + myDebug);
-		//}
+			switch (endTick){
+				case 180:
+					SoundManager.Instance.PlaySound(SoundManager.Instance.voice_victory);
+					// show victory text
+					break;
+				case 300:
+					//rocket player off?
+					break;
+				case 600:
+					// end game
+					ChangeScene("res://Scenes/about.tscn");
+					break;
+				case 660:
+					endTick = 0;
+					gameIsOver = false;
+					break;
+				default:
+					break;
+			}
+		}
+
+
+	}
+
+	void TriggerEndSequence(){
+		gameIsOver = true;
 	}
 
 	void OnNewScene(){

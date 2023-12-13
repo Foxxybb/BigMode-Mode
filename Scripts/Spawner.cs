@@ -102,8 +102,10 @@ public partial class Spawner : Node2D
 				GetNode<Node2D>("/root/Scene").AddChild(newEnemyB);
 				newEnemyB.GlobalPosition = spawnList[spawnIdx].Position;
 				break;
-			case 3:
-
+			case 3: // final
+				EnemyF newEnemyF = (EnemyF)Database.Instance.enemyF.Instantiate();
+				GetNode<Node2D>("/root/Scene").AddChild(newEnemyF);
+				newEnemyF.GlobalPosition = spawnList[spawnIdx].Position;
 				break;
 			default:
 			break;
@@ -251,8 +253,8 @@ public partial class Spawner : Node2D
 					SpawnBigLeft();
 				}
 				break;
-			case 75:
-				
+			case 80:
+				SpawnFinal();
 				break;
 			default:
 				break;

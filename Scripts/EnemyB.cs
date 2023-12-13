@@ -8,7 +8,7 @@ public partial class EnemyB : CharacterBody2D
 
 	public Vector2 movementVec;
 	public float moveSpeed = 110;
-	public int HP = 85;
+	public int HP = 80;
 
 	ShaderMaterial shader;
 	float flash;
@@ -52,13 +52,13 @@ public partial class EnemyB : CharacterBody2D
 		if (HP <= 0){
 
 			// spawn particles
-			GpuParticles2D KP = (GpuParticles2D)Database.Instance.killParticles.Instantiate();
+			GpuParticles2D KP = (GpuParticles2D)Database.Instance.killParticlesB.Instantiate();
 			GetNode<Node2D>("/root/Scene").AddChild(KP);
 			KP.GlobalPosition = this.GlobalPosition;
 			KP.Emitting = true;
 			KP.Scale = new Vector2(5,5);
 
-			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 7, 0.8f);
+			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.bigkill, this, 7);
 			this.QueueFree();
 		}
 

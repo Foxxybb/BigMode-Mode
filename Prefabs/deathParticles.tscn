@@ -35,6 +35,8 @@ colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_mna6h")
 width = 32
 height = 32
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
 emitting = false

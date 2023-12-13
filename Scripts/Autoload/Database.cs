@@ -15,12 +15,15 @@ public partial class Database : Node
 	public PackedScene enemyG;
 	public PackedScene enemyA;
 	public PackedScene enemyB;
+	public PackedScene enemyF;
 	public PackedScene transition;
 	public PackedScene audioShot;
 	public PackedScene warn;
 
 	public PackedScene deathParticles;
 	public PackedScene killParticles;
+	public PackedScene killParticlesB;
+	public PackedScene finalParticles;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -38,12 +41,15 @@ public partial class Database : Node
 		enemyG = GD.Load<PackedScene>("res://Prefabs/enemyG.tscn");
 		enemyA = GD.Load<PackedScene>("res://Prefabs/enemyA.tscn");
 		enemyB = GD.Load<PackedScene>("res://Prefabs/enemyB.tscn");
+		enemyF = GD.Load<PackedScene>("res://Prefabs/enemyF.tscn");
 		transition = GD.Load<PackedScene>("res://Prefabs/transition.tscn");
 		audioShot = GD.Load<PackedScene>("res://Prefabs/AudioShot.tscn");
 		warn = GD.Load<PackedScene>("res://Prefabs/warn.tscn");
 
 		deathParticles = GD.Load<PackedScene>("res://Prefabs/deathParticles.tscn");
 		killParticles = GD.Load<PackedScene>("res://Prefabs/killParticles.tscn");
+		killParticlesB = GD.Load<PackedScene>("res://Prefabs/killParticlesB.tscn");
+		finalParticles = GD.Load<PackedScene>("res://Prefabs/finalParticles.tscn");
 	}
 
 	void LoadScenes(){
