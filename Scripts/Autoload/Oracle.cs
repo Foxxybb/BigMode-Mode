@@ -26,6 +26,7 @@ public partial class Oracle : Node
 	public override void _Ready()
 	{
 		Instance = this;
+		Engine.MaxFps = 60;
 
 		Events.Instance.GameSceneReady += () => OnNewScene();
 		Events.Instance.FinalKill += () => TriggerEndSequence();
@@ -71,8 +72,6 @@ public partial class Oracle : Node
 
 		if (gameIsOver){
 			endTick += 1;
-
-			
 
 			switch (endTick){
 				case 179:
