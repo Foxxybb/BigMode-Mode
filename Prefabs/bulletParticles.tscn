@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://nqkpyefmj3du"]
+
+[sub_resource type="Curve" id="Curve_hpn40"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.506536, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t4icf"]
+curve = SubResource("Curve_hpn40")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ircll"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 339.39
+initial_velocity_max = 766.44
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_t4icf")
+attractor_interaction_enabled = false
+
+[sub_resource type="Gradient" id="Gradient_mna6h"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x6duu"]
+gradient = SubResource("Gradient_mna6h")
+width = 15
+height = 15
+fill_to = Vector2(0, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = 1
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_ircll")
+texture = SubResource("GradientTexture2D_x6duu")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+fract_delta = false
+visibility_rect = Rect2(10, 10, 10, 10)
+trail_lifetime = 0.42
+trail_sections = 2
+trail_section_subdivisions = 2

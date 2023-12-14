@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://p21qdv7h7myw"]
+[gd_scene load_steps=18 format=3 uid="uid://p21qdv7h7myw"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_u7xep"]
 [ext_resource type="AudioStream" uid="uid://cdxe1e6nbyf4o" path="res://Audio/Voice/Go.wav" id="2_xo1od"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="3_2sgqs"]
+[ext_resource type="Script" path="res://Scripts/GroundB.cs" id="4_pc5if"]
 [ext_resource type="PackedScene" uid="uid://btjxpn6hai8xo" path="res://Prefabs/player.tscn" id="4_vkjj1"]
 [ext_resource type="Texture2D" uid="uid://c7dgcwogpvnve" path="res://Misc/biggieBG.bmp" id="6_85pmt"]
 [ext_resource type="Texture2D" uid="uid://dptxc3fblv621" path="res://Sprites/block.png" id="7_g5f6k"]
@@ -17,11 +18,11 @@ size = Vector2(1280, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4rn4x"]
 size = Vector2(64, 672)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1xuf"]
-size = Vector2(1280, 64)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jdyi"]
 size = Vector2(64, 672)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1xuf"]
+size = Vector2(1280, 64)
 
 [sub_resource type="Gradient" id="Gradient_2wu4p"]
 offsets = PackedFloat32Array(0, 0.227119, 0.40339, 0.454237, 0.498305, 0.552542, 0.60678, 0.769492, 1)
@@ -222,7 +223,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "GAMEPAD"
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(0, -736)
+position = Vector2(-8, -736)
 collision_layer = 4
 collision_mask = 4
 
@@ -236,29 +237,43 @@ offset_top = 672.0
 offset_right = 1280.0
 offset_bottom = 736.0
 
-[node name="Ground3" type="StaticBody2D" parent="."]
-position = Vector2(-64, -352)
+[node name="GroundL" type="StaticBody2D" parent="."]
+position = Vector2(-32, 336)
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground3"]
-position = Vector2(32, 688)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundL"]
 shape = SubResource("RectangleShape2D_4rn4x")
 
-[node name="ColorRect" type="ColorRect" parent="Ground3"]
+[node name="ColorRect" type="ColorRect" parent="GroundL"]
 visible = false
 offset_top = 352.0
 offset_right = 64.0
 offset_bottom = 1024.0
 color = Color(0.443137, 1, 1, 1)
 
-[node name="GroundB" type="StaticBody2D" parent="."]
-position = Vector2(640, 0)
+[node name="GroundR" type="StaticBody2D" parent="."]
+position = Vector2(1312, 336)
 collision_layer = 4
 collision_mask = 4
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundR"]
+shape = SubResource("RectangleShape2D_8jdyi")
+
+[node name="ColorRect" type="ColorRect" parent="GroundR"]
+visible = false
+offset_left = 576.0
+offset_top = 272.0
+offset_right = 640.0
+offset_bottom = 944.0
+
+[node name="GroundB" type="StaticBody2D" parent="."]
+position = Vector2(640, 704)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("4_pc5if")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundB"]
-position = Vector2(0, 704)
 shape = SubResource("RectangleShape2D_d1xuf")
 
 [node name="ColorRect" type="ColorRect" parent="GroundB"]
@@ -268,22 +283,6 @@ offset_top = 672.0
 offset_right = 640.0
 offset_bottom = 736.0
 color = Color(0.741176, 0.741176, 0.741176, 1)
-
-[node name="Ground4" type="StaticBody2D" parent="."]
-position = Vector2(704, -272)
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground4"]
-position = Vector2(608, 608)
-shape = SubResource("RectangleShape2D_8jdyi")
-
-[node name="ColorRect" type="ColorRect" parent="Ground4"]
-visible = false
-offset_left = 576.0
-offset_top = 272.0
-offset_right = 640.0
-offset_bottom = 944.0
 
 [node name="Player" parent="." instance=ExtResource("4_vkjj1")]
 position = Vector2(640, 624)

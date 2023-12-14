@@ -20,6 +20,7 @@ public partial class Database : Node
 	public PackedScene audioShot;
 	public PackedScene warn;
 
+	public PackedScene bulletParticles;
 	public PackedScene deathParticles;
 	public PackedScene killParticles;
 	public PackedScene killParticlesB;
@@ -46,6 +47,7 @@ public partial class Database : Node
 		audioShot = GD.Load<PackedScene>("res://Prefabs/AudioShot.tscn");
 		warn = GD.Load<PackedScene>("res://Prefabs/warn.tscn");
 
+		bulletParticles = GD.Load<PackedScene>("res://Prefabs/bulletParticles.tscn");
 		deathParticles = GD.Load<PackedScene>("res://Prefabs/deathParticles.tscn");
 		killParticles = GD.Load<PackedScene>("res://Prefabs/killParticles.tscn");
 		killParticlesB = GD.Load<PackedScene>("res://Prefabs/killParticlesB.tscn");

@@ -134,10 +134,17 @@
     //-background fade
 
     //-victory voice
+    //-final music
 
-    -victory Text
 
-    -final music
+//- remove control from player
+//- remove top collider
+//- blast player off  
+//- bullet particles
+
+-victory Text
+
+ 
 
 -Title Screen
  -Title Text

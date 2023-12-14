@@ -6,8 +6,8 @@ public partial class SoundManager : Node
 	public static SoundManager Instance;
 	Random rand = new Random();
 
-	AudioStreamPlayer musicPlayer;
-	AudioStreamPlayer soundPlayer;
+	public AudioStreamPlayer musicPlayer;
+	public AudioStreamPlayer soundPlayer;
 
 	public AudioStreamWav jump;
 	public AudioStreamWav fire;
@@ -28,7 +28,7 @@ public partial class SoundManager : Node
 
 	// Music
 	public AudioStreamWav introMusic;
-	public AudioStreamWav bossMusic;
+	public AudioStreamWav outroMusic;
 
 	public override void _Ready()
 	{
@@ -38,6 +38,7 @@ public partial class SoundManager : Node
 
 		LoadSounds();
 		LoadVoices();
+		LoadMusic();
 	}
 
 	void LoadSounds(){
@@ -62,7 +63,7 @@ public partial class SoundManager : Node
 
 	void LoadMusic(){
 		introMusic = (AudioStreamWav)GD.Load("res://Audio/Music/delvingIntro.wav");
-		//bossMusic = (AudioStreamWav)GD.Load("res://Audio/Music/delvingIntro.wav");
+		outroMusic = (AudioStreamWav)GD.Load("res://Audio/Music/delvingOutro.wav");
 	}
 
 	public void PlayMusic(AudioStreamWav track){

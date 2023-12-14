@@ -238,6 +238,13 @@ public partial class Spawner : Node2D
 					SpawnBigRight();
 					bigRightStart = true;
 				}
+
+				// start ending music
+				SoundManager.Instance.musicPlayer.VolumeDb = -3;
+				SoundManager.Instance.PlayMusic(SoundManager.Instance.outroMusic);
+				break;
+			case 63:
+				
 				break;
 			case 65:
 				if (bigRightStart){

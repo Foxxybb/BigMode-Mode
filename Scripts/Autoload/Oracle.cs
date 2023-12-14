@@ -20,6 +20,7 @@ public partial class Oracle : Node
 
 	int endTick;
 	bool gameIsOver;
+	public bool playerHasControl = true;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -54,10 +55,9 @@ public partial class Oracle : Node
 			};
 
 			if (curScene.soundOnExit != null){
+				SoundManager.Instance.StopMusic();
 				SoundManager.Instance.PlaySound(curScene.soundOnExit);
 			}
-
-			SoundManager.Instance.StopMusic();
 		}
 
 		if (Input.IsActionJustPressed("test_action"))
@@ -72,21 +72,36 @@ public partial class Oracle : Node
 		if (gameIsOver){
 			endTick += 1;
 
+			
+
 			switch (endTick){
+				case 179:
+					// show victory text
+					GetNode<AnimatedSprite2D>("/root/Scene/Victory").Play("victory");
+					break;
 				case 180:
 					SoundManager.Instance.PlaySound(SoundManager.Instance.voice_victory);
-					// show victory text
+					// remove top barrier
+					GetNode<StaticBody2D>("/root/Scene/GroundT").QueueFree();
+					break;
+				case 240:
+					if (!GetNode<Player>("/root/Scene/Player").jumpMode){
+						GetNode<Player>("/root/Scene/Player").ModeChange();
+					} 
 					break;
 				case 300:
 					//rocket player off?
+					GetNode<Player>("/root/Scene/Player").autoFireOn = true;
 					break;
-				case 600:
+				case 1000:
 					// end game
 					ChangeScene("res://Scenes/about.tscn");
 					break;
-				case 660:
+				case 1060:
 					endTick = 0;
 					gameIsOver = false;
+					playerHasControl = true;
+					SoundManager.Instance.musicPlayer.VolumeDb = -8;
 					SoundManager.Instance.PlayMusic(SoundManager.Instance.introMusic);
 					break;
 				default:
@@ -99,6 +114,7 @@ public partial class Oracle : Node
 
 	void TriggerEndSequence(){
 		gameIsOver = true;
+		playerHasControl = false;
 	}
 
 	void OnNewScene(){

@@ -25,6 +25,7 @@ public partial class Bullet : Node2D
 		lifeSpan--;
 		if (lifeSpan <= 0)
 		{
+			OnDestroy();
 			this.QueueFree();
 		}
 	}
@@ -36,6 +37,9 @@ public partial class Bullet : Node2D
 		switch (body.GetType().ToString())
 		{
 			case "Godot.StaticBody2D":
+				this.QueueFree();
+				break;
+			case "GroundB":
 				Collide();
 				break;
 			case "Enemy":
@@ -59,23 +63,32 @@ public partial class Bullet : Node2D
 			case "EnemyB":
 				EnemyB enemyB = (EnemyB)body; // get enemy script
 				enemyB.TakeDamage();
-				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -1, 0.9f);
+				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -2, 0.9f);
 				Collide();
 				break;
 			case "EnemyF":
 				EnemyF enemyF = (EnemyF)body; // get enemy script
 				enemyF.TakeDamage();
-				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -1, 0.9f);
+				SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.hit, body, -3, 0.9f);
 				Collide();
 				break;
 			default:
+				
 				break;
 		}
 	}
 
 	void Collide()
 	{
+		OnDestroy();
 		this.QueueFree();
+	}
+
+	void OnDestroy(){
+		GpuParticles2D KP = (GpuParticles2D)Database.Instance.bulletParticles.Instantiate();
+		GetNode<Node2D>("/root/Scene").AddChild(KP);
+		KP.GlobalPosition = this.GlobalPosition;
+		KP.Emitting = true;
 	}
 
 }

@@ -39,7 +39,7 @@ height = 32
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
 emitting = false
-amount = 100
+amount = 150
 process_material = SubResource("ParticleProcessMaterial_ircll")
 texture = SubResource("GradientTexture2D_x6duu")
 one_shot = true
