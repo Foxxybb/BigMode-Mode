@@ -133,6 +133,18 @@ text = "Theme: \"Mode\"
 "
 scroll_active = false
 
+[node name="RichTextLabel9" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -176.0
+offset_top = -96.0
+offset_right = 208.0
+offset_bottom = -32.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "THANKS FOR PLAYING!!! 
+"
+scroll_active = false
+
 [node name="RichTextLabel5" type="RichTextLabel" parent="Control"]
 layout_mode = 0
 offset_left = -240.0
@@ -154,6 +166,15 @@ offset_left = -176.0
 offset_top = -608.0
 offset_right = 160.0
 offset_bottom = -536.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect10" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -192.0
+offset_top = -96.0
+offset_right = 192.0
+offset_bottom = -48.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="ColorRect9" type="ColorRect" parent="Control"]
@@ -240,7 +261,8 @@ texture = ExtResource("5_6f8wn")
 
 [node name="Epic2" type="Sprite2D" parent="."]
 z_index = -5
-position = Vector2(656, 368)
+position = Vector2(640, 368)
+scale = Vector2(1.0125, 1.04444)
 texture = ExtResource("6_6f7bg")
 
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="Control" method="_on_play_pressed"]

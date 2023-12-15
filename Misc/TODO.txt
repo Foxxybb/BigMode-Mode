@@ -142,10 +142,15 @@
 //- blast player off  
 //- bullet particles
 
--victory Text
+//-victory Text
 
- 
+ //-Title Screen
+ //-Title Text
+ //-Title biggie render
 
--Title Screen
- -Title Text
- -Title biggie render
+ -PATCH 1
+
+    removed debug build
+    slighty lowered ground enemy HP
+    fixed top left pushing player when enemy spawns
+    added "Thanks for playing!!!" in About Scene :)

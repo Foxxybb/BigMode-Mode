@@ -8,7 +8,7 @@ public partial class EnemyG : CharacterBody2D
 
 	public Vector2 movementVec;
 	public float moveSpeed = 100;
-	public int HP = 20;
+	public int HP = 18;
 
 	ShaderMaterial shader;
 	float flash;

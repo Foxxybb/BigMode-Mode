@@ -22,7 +22,7 @@ public partial class RedBG : TextureRect
 	}
 
 	void FadeBG(){
-		GD.Print("fade bg");
+		//GD.Print("fade bg");
 		fadeTriggered = true;
 	}
 }

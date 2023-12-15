@@ -90,22 +90,22 @@ public partial class Spawner : Node2D
 			case 0: // ground
 				EnemyG newEnemyG = (EnemyG)Database.Instance.enemyG.Instantiate();
 				GetNode<Node2D>("/root/Scene").AddChild(newEnemyG);
-				newEnemyG.GlobalPosition = spawnList[spawnIdx].Position;
+				newEnemyG.GlobalPosition = spawnList[spawnIdx].GlobalPosition;
 				break;
 			case 1: // air
 				EnemyA newEnemyA = (EnemyA)Database.Instance.enemyA.Instantiate();
 				GetNode<Node2D>("/root/Scene").AddChild(newEnemyA);
-				newEnemyA.GlobalPosition = spawnList[spawnIdx].Position;
+				newEnemyA.GlobalPosition = spawnList[spawnIdx].GlobalPosition;
 				break;
 			case 2: // big
 				EnemyB newEnemyB = (EnemyB)Database.Instance.enemyB.Instantiate();
 				GetNode<Node2D>("/root/Scene").AddChild(newEnemyB);
-				newEnemyB.GlobalPosition = spawnList[spawnIdx].Position;
+				newEnemyB.GlobalPosition = spawnList[spawnIdx].GlobalPosition;
 				break;
 			case 3: // final
 				EnemyF newEnemyF = (EnemyF)Database.Instance.enemyF.Instantiate();
 				GetNode<Node2D>("/root/Scene").AddChild(newEnemyF);
-				newEnemyF.GlobalPosition = spawnList[spawnIdx].Position;
+				newEnemyF.GlobalPosition = spawnList[spawnIdx].GlobalPosition;
 				break;
 			default:
 			break;

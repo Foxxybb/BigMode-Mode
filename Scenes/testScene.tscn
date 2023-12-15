@@ -776,6 +776,7 @@ musicForScene = ExtResource("2_m7tjb")
 isGameplayScene = true
 
 [node name="MyCamera" parent="." instance=ExtResource("2_yvtev")]
+position = Vector2(640, 800)
 
 [node name="RestartText" type="Control" parent="."]
 visible = false
@@ -789,9 +790,9 @@ top_level = true
 z_index = 2
 layout_mode = 0
 offset_left = 480.0
-offset_top = 432.0
+offset_top = 816.0
 offset_right = 816.0
-offset_bottom = 496.0
+offset_bottom = 880.0
 theme_override_font_sizes/normal_font_size = 22
 text = " Press \"R\"  or START to retry!"
 
@@ -800,9 +801,9 @@ top_level = true
 z_index = 2
 layout_mode = 0
 offset_left = 528.0
-offset_top = 320.0
+offset_top = 704.0
 offset_right = 768.0
-offset_bottom = 400.0
+offset_bottom = 784.0
 theme_override_font_sizes/normal_font_size = 40
 text = "DESTROYED"
 
@@ -810,22 +811,22 @@ text = "DESTROYED"
 z_index = 2
 layout_mode = 0
 offset_left = 512.0
-offset_top = 320.0
+offset_top = 704.0
 offset_right = 768.0
-offset_bottom = 384.0
+offset_bottom = 768.0
 color = Color(0, 0, 0, 0.784314)
 
 [node name="ColorRect2" type="ColorRect" parent="RestartText"]
 z_index = 2
 layout_mode = 0
 offset_left = 480.0
-offset_top = 432.0
+offset_top = 816.0
 offset_right = 800.0
-offset_bottom = 464.0
+offset_bottom = 848.0
 color = Color(0, 0, 0, 0.784314)
 
 [node name="GroundT" type="StaticBody2D" parent="."]
-position = Vector2(0, -736)
+position = Vector2(0, -288)
 collision_layer = 4
 collision_mask = 4
 
@@ -840,7 +841,7 @@ offset_right = 1280.0
 offset_bottom = 736.0
 
 [node name="Ground3" type="StaticBody2D" parent="."]
-position = Vector2(-64, -352)
+position = Vector2(-64, 96)
 collision_layer = 4
 collision_mask = 4
 
@@ -856,7 +857,7 @@ offset_bottom = 1024.0
 color = Color(0.443137, 1, 1, 1)
 
 [node name="GroundB" type="StaticBody2D" parent="."]
-position = Vector2(640, 0)
+position = Vector2(640, 448)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("4_5uj1i")
@@ -874,7 +875,7 @@ offset_bottom = 736.0
 color = Color(0.741176, 0.741176, 0.741176, 1)
 
 [node name="Ground4" type="StaticBody2D" parent="."]
-position = Vector2(704, -272)
+position = Vector2(704, 176)
 collision_layer = 4
 collision_mask = 4
 
@@ -890,10 +891,11 @@ offset_right = 640.0
 offset_bottom = 944.0
 
 [node name="Player" parent="." instance=ExtResource("1_q6ydu")]
-position = Vector2(640, 624)
+position = Vector2(640, 1072)
 collision_mask = 5
 
 [node name="Spawner" type="Node2D" parent="."]
+position = Vector2(0, 448)
 script = ExtResource("5_g1nqg")
 
 [node name="Spawn1" type="Node2D" parent="Spawner"]
@@ -1079,20 +1081,22 @@ offset_bottom = 16.0
 [node name="FinalBG" type="TextureRect" parent="."]
 z_index = -15
 offset_left = -32.0
-offset_top = -96.0
+offset_top = 352.0
 offset_right = 1376.0
-offset_bottom = 736.0
+offset_bottom = 1184.0
 scale = Vector2(0.95, 0.95)
 texture = ExtResource("5_0c4wi")
 
 [node name="RedBG" type="TextureRect" parent="."]
 z_index = -15
+offset_top = 448.0
 offset_right = 1280.0
-offset_bottom = 720.0
+offset_bottom = 1168.0
 texture = SubResource("GradientTexture2D_gs8yk")
 script = ExtResource("7_y4nfe")
 
 [node name="Ground2" type="Node2D" parent="."]
+position = Vector2(0, 448)
 
 [node name="Block" type="Sprite2D" parent="Ground2"]
 position = Vector2(64, 736)
@@ -1157,8 +1161,9 @@ texture = ExtResource("6_orvs3")
 [node name="TimerLabel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 448.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 488.0
 
 [node name="Label" type="Label" parent="TimerLabel"]
 layout_mode = 0
@@ -1181,7 +1186,7 @@ text = "60.00"
 script = ExtResource("9_63s72")
 
 [node name="MovingBG" type="Node2D" parent="."]
-position = Vector2(0, -48)
+position = Vector2(0, 400)
 script = ExtResource("10_gmjek")
 
 [node name="1" type="Node2D" parent="MovingBG"]
@@ -1301,7 +1306,7 @@ autostart = true
 script = ExtResource("7_5gnnx")
 
 [node name="Victory" type="AnimatedSprite2D" parent="."]
-position = Vector2(640, 128)
+position = Vector2(640, 576)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_y5mqq")
 animation = &"victory"
