@@ -154,3 +154,13 @@
     slighty lowered ground enemy HP
     fixed top left pushing player when enemy spawns
     added "Thanks for playing!!!" in About Scene :)
+
+-patch 2-
+
+-PB text: "New record!"
+-fix being able to restart during end sequence
+-flying enemy animation change on chase
+-tweak spawn pattern to force flying mode
+-demo mode?
+-webGL version
+-tips in game description
