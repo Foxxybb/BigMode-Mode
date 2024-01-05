@@ -128,6 +128,32 @@ public partial class Spawner : Node2D
 		}
 	}
 
+	// Single Spawns
+	void SpawnBotRight(){
+		SpawnEnemy(0,0);
+	}
+
+	void SpawnMidRight(){
+		SpawnEnemy(1,1);
+	}
+
+	void SpawnTopRight(){
+		SpawnEnemy(2,1);
+	}
+
+	void SpawnBotLeft(){
+		SpawnEnemy(3,0);
+	}
+
+	void SpawnMidLeft(){
+		SpawnEnemy(4,1);
+	}
+
+	void SpawnTopLeft(){
+		SpawnEnemy(5,1);
+	}
+
+	//
 	void SpawnGround(){
 		SpawnEnemy(0,0);
 		SpawnEnemy(3,0);
@@ -151,6 +177,7 @@ public partial class Spawner : Node2D
 	}
 
 	void SpawnMid(){
+		SpawnEnemy(4,1);
 		SpawnEnemy(1,1);
 	}
 
@@ -176,7 +203,103 @@ public partial class Spawner : Node2D
 		if (!Oracle.Instance.playerDead){
 			// trigger next event in sequence
 			eventTick++;
-			SpawnEvent(eventTick);
+			SpawnEventRedux(eventTick);
+		}
+	}
+
+	// new spawn sequence
+	void SpawnEventRedux(int tick){
+		switch (tick) {
+			case 1:
+				SpawnBotRight();
+				break;
+			case 3:
+				SpawnMidLeft();
+				break;
+			case 5:
+				SpawnBotLeft();
+				SpawnTopRight();
+				break;
+			case 8:
+				SpawnGround();
+				break;
+			case 10:
+				SpawnMidRight();
+				break;
+			case 12:
+				SpawnTopLeft();
+				break;
+			case 17:
+				SpawnMidLeft();
+				SpawnBotLeft();
+				break;
+			case 20:
+				SpawnGround();
+				SpawnMidRight();
+				break;
+			case 22:
+				SpawnMidLeft();
+				break;
+			case 23:
+				break;
+			case 24:
+				SpawnMid();
+				break;
+			case 30:
+				SpawnGround();
+				break;
+			case 32:
+				SpawnMid();
+				break;
+			case 35:
+				SpawnTop();
+				break;
+			case 40:
+				SpawnGround();
+				break;
+			case 45:
+				SpawnAir();
+				break;
+			case 50:
+				SpawnGround();
+				break;
+			case 55:
+				break;
+			case 60:
+				// spawn on side that player isn't on
+				if (GetNode<Player>("/root/Scene/Player").Position.X > 640){
+					SpawnBigLeft();
+				} else {
+					SpawnBigRight();
+					bigRightStart = true;
+				}
+
+				// start ending music
+				SoundManager.Instance.musicPlayer.VolumeDb = -3;
+				SoundManager.Instance.PlayMusic(SoundManager.Instance.outroMusic);
+				break;
+			case 63:
+				
+				break;
+			case 65:
+				if (bigRightStart){
+					SpawnBigLeft();
+				} else {
+					SpawnBigRight();
+				}
+				break;
+			case 70:
+				if (bigRightStart){
+					SpawnBigRight();
+				} else {
+					SpawnBigLeft();
+				}
+				break;
+			case 80:
+				SpawnFinal();
+				break;
+			default:
+				break;
 		}
 	}
 

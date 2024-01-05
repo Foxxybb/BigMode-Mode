@@ -15,7 +15,7 @@ public partial class Player : CharacterBody2D
 
 	public bool markedForDeath = false;
 	public bool jumpMode = false;
-	int modeChangeCooldown = 40;
+	int modeChangeCooldown = 36;
 	int modeChangeCooldownTick;
 
 	// used for bullet spawns
@@ -237,11 +237,17 @@ public partial class Player : CharacterBody2D
 		if (Oracle.Instance.PBTime > Oracle.Instance.displayTime)
 		{
 			Oracle.Instance.PBTime = Oracle.Instance.displayTime;
+			// display new record text
+			GetNode<Control>("/root/Scene/TimerLabel/Label3").Visible = true;
+
+			// prevent pb going below 0
 			if (Oracle.Instance.PBTime < 0)
 			{
 				Oracle.Instance.PBTime = 0;
 			}
 		}
+
+		
 
 		this.QueueFree();
 		// display retry message

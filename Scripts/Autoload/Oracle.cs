@@ -42,7 +42,7 @@ public partial class Oracle : Node
 			displayTime -= delta;
 		}
 
-		if (Input.IsActionJustPressed("reset_action"))
+		if (Input.IsActionJustPressed("reset_action") && playerHasControl)
 		{
 			//ResetScene();
 			// if current scene is not gameplay scene, change scene to Tutorial

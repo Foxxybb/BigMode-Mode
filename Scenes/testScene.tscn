@@ -1185,6 +1185,17 @@ scale = Vector2(2, 2)
 text = "60.00"
 script = ExtResource("9_63s72")
 
+[node name="Label3" type="Label" parent="TimerLabel"]
+visible = false
+self_modulate = Color(0.870588, 0.972549, 0, 1)
+layout_mode = 0
+offset_left = 544.0
+offset_top = 96.0
+offset_right = 636.0
+offset_bottom = 146.0
+scale = Vector2(2, 2)
+text = "New record!"
+
 [node name="MovingBG" type="Node2D" parent="."]
 position = Vector2(0, 400)
 script = ExtResource("10_gmjek")

@@ -25,6 +25,7 @@ public partial class EnemyA : CharacterBody2D
 
 		// get player node to chase
 		player = GetNode<Player>("/root/Scene/Player");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,6 +46,8 @@ public partial class EnemyA : CharacterBody2D
 				if (this.GlobalPosition.DistanceTo(new Vector2(player.GlobalPosition.X, this.GlobalPosition.Y)) < 100){
 					chasing = true;
 					SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.chase, this, 4);
+					// speed up animation
+					GetNode<AnimatedSprite2D>("AnimatedSprite2D").SpeedScale = 3;
 				}
 
 			}

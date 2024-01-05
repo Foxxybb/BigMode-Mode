@@ -157,10 +157,15 @@
 
 -patch 2-
 
--PB text: "New record!"
--fix being able to restart during end sequence
--flying enemy animation change on chase
--tweak spawn pattern to force flying mode
+//-PB text: "New record!"
+//-fix being able to restart during end sequence
+//-flying enemy animation change on chase
+//-tweak spawn pattern to force flying mode
+
+//-"Try it out!" in training room
+
+-sound slider?
+
 -demo mode?
+
 -webGL version
--tips in game description
