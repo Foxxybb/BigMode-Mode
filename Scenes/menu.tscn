@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyr6348gu3swq"]
+[gd_scene load_steps=10 format=3 uid="uid://dyr6348gu3swq"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_0kc41"]
 [ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_3skm6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="2_y4exk"]
 [ext_resource type="AudioStream" uid="uid://uicq382b53l4" path="res://Audio/Voice/Title.wav" id="3_otoxu"]
 [ext_resource type="Texture2D" uid="uid://ct8a7ri5p0uuk" path="res://Misc/render3.png" id="6_dis61"]
+[ext_resource type="Script" path="res://Scripts/VolumeSlider.cs" id="6_tmye2"]
 [ext_resource type="Texture2D" uid="uid://bvgiwjtuh3e6y" path="res://Misc/title.png" id="7_c7qcg"]
 [ext_resource type="Texture2D" uid="uid://6f756qjr2mnf" path="res://Misc/big.png" id="8_ob2fq"]
 
@@ -60,21 +61,47 @@ text = "Quit"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_left = -256.0
-offset_top = -560.0
-offset_bottom = -432.0
-theme_override_font_sizes/normal_font_size = 66
+offset_left = 384.0
+offset_top = -512.0
+offset_right = 640.0
+offset_bottom = -384.0
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "BIGGIE "
+text = "v2"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 0
-offset_top = -560.0
-offset_right = 352.0
-offset_bottom = -432.0
-theme_override_font_sizes/normal_font_size = 66
-bbcode_enabled = true
-text = "BLASTER"
+offset_left = -640.0
+offset_top = 48.0
+offset_right = -352.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 0.666667)
+
+[node name="HSlider" type="HSlider" parent="Control"]
+layout_mode = 0
+offset_left = -624.0
+offset_top = 96.0
+offset_right = -368.0
+offset_bottom = 112.0
+min_value = -30.0
+max_value = 6.0
+script = ExtResource("6_tmye2")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -528.0
+offset_top = 64.0
+offset_right = -469.0
+offset_bottom = 90.0
+text = "Volume"
+
+[node name="Demo" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 64.0
+offset_right = 608.0
+offset_bottom = 112.0
+text = "Watch Demo"
 
 [node name="BiggieBg" type="Sprite2D" parent="."]
 self_modulate = Color(0.780392, 0.780392, 0.780392, 1)
@@ -97,3 +124,5 @@ texture = ExtResource("8_ob2fq")
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/About" to="Control" method="_on_about_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Quit" to="Control" method="_on_quit_pressed"]
+[connection signal="value_changed" from="Control/HSlider" to="Control/HSlider" method="_on_value_changed"]
+[connection signal="pressed" from="Control/Demo" to="Control" method="_on_demo_pressed"]

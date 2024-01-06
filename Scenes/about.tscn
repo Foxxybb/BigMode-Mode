@@ -110,9 +110,9 @@ text = "
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
 layout_mode = 0
 offset_left = -144.0
-offset_top = -320.0
+offset_top = -304.0
 offset_right = 336.0
-offset_bottom = -272.0
+offset_bottom = -256.0
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Made in 2 weeks for
@@ -123,12 +123,25 @@ scroll_active = false
 [node name="RichTextLabel6" type="RichTextLabel" parent="Control"]
 layout_mode = 0
 offset_left = -112.0
-offset_top = -160.0
+offset_top = -144.0
 offset_right = 144.0
-offset_bottom = -80.0
+offset_bottom = -64.0
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Theme: \"Mode\"
+
+"
+scroll_active = false
+
+[node name="RichTextLabel10" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = -192.0
+offset_right = 208.0
+offset_bottom = -112.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "(with some updates)
 
 "
 scroll_active = false
@@ -208,9 +221,18 @@ color = Color(0, 0, 0, 0.588235)
 z_index = -1
 layout_mode = 0
 offset_left = -160.0
-offset_top = -320.0
+offset_top = -304.0
 offset_right = 160.0
-offset_bottom = -272.0
+offset_bottom = -256.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect11" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -128.0
+offset_top = -192.0
+offset_right = 128.0
+offset_bottom = -160.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="ColorRect2" type="ColorRect" parent="Control"]
@@ -235,9 +257,9 @@ color = Color(0, 0, 0, 0.588235)
 z_index = -1
 layout_mode = 0
 offset_left = -128.0
-offset_top = -160.0
+offset_top = -144.0
 offset_right = 128.0
-offset_bottom = -112.0
+offset_bottom = -96.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="ColorRect8" type="ColorRect" parent="Control"]

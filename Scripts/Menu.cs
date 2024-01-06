@@ -30,12 +30,8 @@ public partial class Menu : Control
 		GetTree().Quit();
 	}
 
+	private void _on_demo_pressed()
+	{
+		Oracle.Instance.ChangeScene("res://Scenes/demo.tscn");
+	}
 }
-
-
-
-
-
-
-
-

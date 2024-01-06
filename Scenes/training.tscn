@@ -64,6 +64,17 @@ offset_bottom = 656.0
 theme_override_font_sizes/normal_font_size = 40
 text = "Try it out! >"
 
+[node name="HOWTOPLAY3" type="RichTextLabel" parent="TutText"]
+self_modulate = Color(1, 1, 0, 1)
+top_level = true
+layout_mode = 0
+offset_left = 440.0
+offset_top = 224.0
+offset_right = 840.0
+offset_bottom = 264.0
+theme_override_font_sizes/normal_font_size = 20
+text = "You can shoot in both directions at once!"
+
 [node name="Control" type="Control" parent="TutText"]
 anchors_preset = 0
 offset_right = 40.0
@@ -535,6 +546,13 @@ offset_left = 368.0
 offset_top = 168.0
 offset_right = 872.0
 offset_bottom = 224.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="ColorRect9" type="ColorRect" parent="."]
+offset_left = 440.0
+offset_top = 224.0
+offset_right = 840.0
+offset_bottom = 256.0
 color = Color(0, 0, 0, 0.784314)
 
 [node name="ColorRect5" type="ColorRect" parent="."]

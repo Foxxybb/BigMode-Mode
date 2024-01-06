@@ -15,7 +15,7 @@ public partial class Player : CharacterBody2D
 
 	public bool markedForDeath = false;
 	public bool jumpMode = false;
-	int modeChangeCooldown = 36;
+	int modeChangeCooldown = 34;
 	int modeChangeCooldownTick;
 
 	// used for bullet spawns

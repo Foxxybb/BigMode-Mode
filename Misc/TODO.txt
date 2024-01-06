@@ -150,7 +150,6 @@
 
  -PATCH 1
 
-    removed debug build
     slighty lowered ground enemy HP
     fixed top left pushing player when enemy spawns
     added "Thanks for playing!!!" in About Scene :)
@@ -163,9 +162,10 @@
 //-tweak spawn pattern to force flying mode
 
 //-"Try it out!" in training room
-
--sound slider?
+//-sound slider?
 
 -demo mode?
+- demo game scene
+- input feeder?
 
 -webGL version
