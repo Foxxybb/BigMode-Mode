@@ -17,7 +17,7 @@ soundForScene = ExtResource("3_otoxu")
 
 [node name="MyCamera" parent="." instance=ExtResource("2_y4exk")]
 
-[node name="Control" type="Control" parent="."]
+[node name="MenuButtons" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +30,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3skm6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="MenuButtons"]
+layout_mode = 0
+offset_left = -624.0
+offset_top = 48.0
+offset_right = -352.0
+offset_bottom = 112.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="ColorRect2" type="ColorRect" parent="MenuButtons"]
+z_index = -1
+layout_mode = 0
+offset_left = -640.0
+offset_top = -592.0
+offset_right = 640.0
+offset_bottom = 144.0
+color = Color(1, 1, 1, 0.352941)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuButtons"]
 z_index = 5
 layout_mode = 1
 anchors_preset = 7
@@ -38,28 +55,30 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -160.0
+offset_left = -624.0
 offset_top = -96.0
+offset_right = -488.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2, 2)
 
-[node name="Play" type="Button" parent="Control/VBoxContainer"]
+[node name="Play" type="Button" parent="MenuButtons/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
 text = "Play"
 
-[node name="About" type="Button" parent="Control/VBoxContainer"]
+[node name="About" type="Button" parent="MenuButtons/VBoxContainer"]
 layout_mode = 2
 text = "About"
 
-[node name="Quit" type="Button" parent="Control/VBoxContainer"]
+[node name="Quit" type="Button" parent="MenuButtons/VBoxContainer"]
+visible = false
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Play")
 text = "Quit"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuButtons"]
 layout_mode = 0
 offset_left = 384.0
 offset_top = -512.0
@@ -69,33 +88,26 @@ theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "v2"
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="HSlider" type="HSlider" parent="MenuButtons"]
 layout_mode = 0
-offset_left = -640.0
-offset_top = 48.0
-offset_right = -352.0
-offset_bottom = 144.0
-color = Color(0, 0, 0, 0.666667)
-
-[node name="HSlider" type="HSlider" parent="Control"]
-layout_mode = 0
-offset_left = -624.0
-offset_top = 96.0
+offset_left = -608.0
+offset_top = 80.0
 offset_right = -368.0
-offset_bottom = 112.0
+offset_bottom = 96.0
 min_value = -30.0
 max_value = 6.0
 script = ExtResource("6_tmye2")
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="MenuButtons"]
 layout_mode = 0
 offset_left = -528.0
-offset_top = 64.0
-offset_right = -469.0
-offset_bottom = 90.0
+offset_top = 48.0
+offset_right = -448.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 20
 text = "Volume"
 
-[node name="Demo" type="Button" parent="Control"]
+[node name="Demo" type="Button" parent="MenuButtons"]
 layout_mode = 0
 offset_left = 416.0
 offset_top = 64.0
@@ -121,8 +133,8 @@ position = Vector2(640, 448)
 scale = Vector2(7, 7)
 texture = ExtResource("8_ob2fq")
 
-[connection signal="pressed" from="Control/VBoxContainer/Play" to="Control" method="_on_play_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/About" to="Control" method="_on_about_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Quit" to="Control" method="_on_quit_pressed"]
-[connection signal="value_changed" from="Control/HSlider" to="Control/HSlider" method="_on_value_changed"]
-[connection signal="pressed" from="Control/Demo" to="Control" method="_on_demo_pressed"]
+[connection signal="pressed" from="MenuButtons/VBoxContainer/Play" to="MenuButtons" method="_on_play_pressed"]
+[connection signal="pressed" from="MenuButtons/VBoxContainer/About" to="MenuButtons" method="_on_about_pressed"]
+[connection signal="pressed" from="MenuButtons/VBoxContainer/Quit" to="MenuButtons" method="_on_quit_pressed"]
+[connection signal="value_changed" from="MenuButtons/HSlider" to="MenuButtons/HSlider" method="_on_value_changed"]
+[connection signal="pressed" from="MenuButtons/Demo" to="MenuButtons" method="_on_demo_pressed"]

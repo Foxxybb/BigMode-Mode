@@ -56,13 +56,16 @@ public partial class Player : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		//GD.Print(this.Position);
+		HandleAnimation();
+	}
 
+	public override void _PhysicsProcess(double delta)
+	{
+		// Shooting
 		if (modeChangeCooldownTick <= 0)
 		{
 			if (Oracle.Instance.playerHasControl || autoFireOn)
 			{
-
 				// shoot left
 				if (Input.IsActionPressed("shoot_left") || autoFireOn)
 				{
@@ -125,21 +128,7 @@ public partial class Player : CharacterBody2D
 			modeChangeCooldownTick--;
 		}
 
-
-		if (Input.IsActionJustReleased("shoot_right"))
-		{
-			rightArmCD = 0;
-		}
-		if (Input.IsActionJustReleased("shoot_left"))
-		{
-			leftArmCD = 0;
-		}
-
-		HandleAnimation();
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
+		// TEMP VELOCITY
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.
@@ -155,6 +144,7 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
+		// Jump
 		if (Oracle.Instance.playerHasControl)
 		{
 			// Handle Jump.
@@ -174,8 +164,12 @@ public partial class Player : CharacterBody2D
 				// mode change
 				ModeChange();
 			}
-		}
 
+			if (Input.IsActionJustReleased("mode_change")){
+
+			}
+
+		}
 
 		if (IsOnFloor())
 		{
@@ -204,15 +198,6 @@ public partial class Player : CharacterBody2D
 			var coll = GetSlideCollision(i);
 			var body = coll.GetCollider();
 			//GD.Print("Collided with: " + body.GetType().ToString());
-
-			// if collision with "Enemy", player death
-			// if (!markedForDeath){
-			// 	if ((body.GetType().ToString() == "EnemyG") || (body.GetType().ToString() == "EnemyA")){
-			// 		GD.Print("death");
-			// 		PlayerDeath();
-			// 	}
-			// }
-
 		}
 	}
 
@@ -228,7 +213,7 @@ public partial class Player : CharacterBody2D
 		DP.Emitting = true;
 
 		// play death sound
-		SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.death, this, 3);
+		SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.death, this, 0);
 
 		// stop music
 		SoundManager.Instance.StopMusic();
@@ -246,8 +231,6 @@ public partial class Player : CharacterBody2D
 				Oracle.Instance.PBTime = 0;
 			}
 		}
-
-		
 
 		this.QueueFree();
 		// display retry message
@@ -350,6 +333,12 @@ public partial class Player : CharacterBody2D
 		}
 
 		jumpMode = !jumpMode;
+		ResetCD();
+	}
+
+	public void ResetCD(){
+		rightArmCD = 0;
+		leftArmCD = 0;
 	}
 
 	// function to manually switch animation states

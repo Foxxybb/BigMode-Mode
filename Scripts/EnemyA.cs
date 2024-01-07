@@ -31,6 +31,15 @@ public partial class EnemyA : CharacterBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		
+
+		shader.SetShaderParameter("flash_modifier", flash);
+		if (flash > 0) flash -= 0.25f;
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		// Movement
 		try
 		{
 			if (chasing){
@@ -49,7 +58,6 @@ public partial class EnemyA : CharacterBody2D
 					// speed up animation
 					GetNode<AnimatedSprite2D>("AnimatedSprite2D").SpeedScale = 3;
 				}
-
 			}
 		}
 		catch
@@ -71,12 +79,6 @@ public partial class EnemyA : CharacterBody2D
 			this.QueueFree();
 		}
 
-		shader.SetShaderParameter("flash_modifier", flash);
-		if (flash > 0) flash -= 0.25f;
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
 		// stun
 		if (stunTick > 0)
 		{

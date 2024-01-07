@@ -164,8 +164,11 @@
 //-"Try it out!" in training room
 //-sound slider?
 
+-moved game logic to _physicsProcess
+
 -demo mode?
-- demo game scene
+//- demo game scene
+- input recording
 - input feeder?
 
 -webGL version

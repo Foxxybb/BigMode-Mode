@@ -36,7 +36,7 @@ public partial class Oracle : Node
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (displayTimerOn){
 			displayTime -= delta;
@@ -108,12 +108,12 @@ public partial class Oracle : Node
 			}
 		}
 
-
 	}
 
 	void TriggerEndSequence(){
 		gameIsOver = true;
 		playerHasControl = false;
+		GetNode<Player>("/root/Scene/Player").ResetCD();
 	}
 
 	void OnNewScene(){

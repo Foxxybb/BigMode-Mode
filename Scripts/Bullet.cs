@@ -18,6 +18,12 @@ public partial class Bullet : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _PhysicsProcess(double delta){
+
 		// move bullet
 		this.Position = this.Position + bulletVector * bulletSpeed;
 
@@ -28,11 +34,6 @@ public partial class Bullet : Node2D
 			OnDestroy();
 			this.QueueFree();
 		}
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _PhysicsProcess(double delta){
-		//var newSpeed = bulletSpeed*delta;
 		
 	}
 

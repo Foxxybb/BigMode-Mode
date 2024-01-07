@@ -6,7 +6,7 @@ public partial class Menu : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		GetNode<VBoxContainer>("VBoxContainer").GetNode<Button>("Play").GrabFocus();
+		//GetNode<VBoxContainer>("VBoxContainer").GetNode<Button>("Play").GrabFocus();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +32,6 @@ public partial class Menu : Control
 
 	private void _on_demo_pressed()
 	{
-		Oracle.Instance.ChangeScene("res://Scenes/demo.tscn");
+		Oracle.Instance.ChangeScene("res://Scenes/demoScene.tscn");
 	}
 }

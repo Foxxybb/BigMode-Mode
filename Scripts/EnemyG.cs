@@ -29,6 +29,13 @@ public partial class EnemyG : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		
+		shader.SetShaderParameter("flash_modifier", flash);
+		if (flash > 0) flash -= 0.25f;
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		// Movement
 		try {
 			if (player.GlobalPosition.X < this.GlobalPosition.X){
 			movementVec = new Vector2(-moveSpeed,0);
@@ -53,14 +60,9 @@ public partial class EnemyG : CharacterBody2D
 			this.QueueFree();
 		}
 
-		shader.SetShaderParameter("flash_modifier", flash);
-		if (flash > 0) flash -= 0.25f;
-	}
+		
 
-	public override void _PhysicsProcess(double delta)
-	{
-
-		// stun
+		// Stun
 		if (stunTick > 0){
 			Velocity = Vector2.Zero;
 			stunTick--;
