@@ -27,8 +27,7 @@ public partial class EnemyG : CharacterBody2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{
-		
+	{	
 		shader.SetShaderParameter("flash_modifier", flash);
 		if (flash > 0) flash -= 0.25f;
 	}
@@ -59,8 +58,6 @@ public partial class EnemyG : CharacterBody2D
 			SoundManager.Instance.PlaySoundAtNode(SoundManager.Instance.kill, this, 5);
 			this.QueueFree();
 		}
-
-		
 
 		// Stun
 		if (stunTick > 0){
@@ -99,5 +96,4 @@ public partial class EnemyG : CharacterBody2D
 		flash = 1;
 	}
 
-	
 }

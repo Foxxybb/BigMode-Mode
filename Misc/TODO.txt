@@ -162,13 +162,14 @@
 //-tweak spawn pattern to force flying mode
 
 //-"Try it out!" in training room
-//-sound slider?
+//-sound slider
+//-move game logic to _physicsProcess
 
--moved game logic to _physicsProcess
-
--demo mode?
+-demo mode
 //- demo game scene
-- input recording
+//- input recording
+
+- get RNG seed
 - input feeder?
 
 -webGL version

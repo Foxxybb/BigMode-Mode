@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic; 
 
 public partial class Player : CharacterBody2D
 {
@@ -39,6 +40,12 @@ public partial class Player : CharacterBody2D
 	const string AIR = "air";
 	const string JUMP = "jump";
 	const string FIRE = "fire";
+
+	// REPLAY variables
+	int frames = 0;
+	Dictionary<string, string> inputDict = new Dictionary<string, string>(){{"L", "0"}, {"R", "0"}, {"C", "0"}};
+	// replay list is formatted the same as dictionary: frame-LRC
+	List<string> replay = new List<string>(){ "0-000" };
 
 	public override void _Ready()
 	{
@@ -165,10 +172,6 @@ public partial class Player : CharacterBody2D
 				ModeChange();
 			}
 
-			if (Input.IsActionJustReleased("mode_change")){
-
-			}
-
 		}
 
 		if (IsOnFloor())
@@ -188,6 +191,45 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 
 		CheckBodyCollisions();
+
+		RecordInputs();
+
+		if (Input.IsActionJustPressed("test_action")){
+			SaveReplay();
+		}
+	}
+
+	void RecordInputs(){
+		frames += 1;
+		// check each input and update inputDict
+		if (Input.IsActionPressed("shoot_left")){
+			inputDict["L"] = "1";
+		} else {
+			inputDict["L"] = "0";
+		}
+		if (Input.IsActionPressed("shoot_right")){
+			inputDict["R"] = "1";
+		} else {
+			inputDict["R"] = "0";
+		}
+		if (Input.IsActionPressed("mode_change")){
+			inputDict["C"] = "1";
+		} else {
+			inputDict["C"] = "0";
+		}
+
+		// append to replay array
+		var thisInput = inputDict["L"] + inputDict["R"] + inputDict["C"];
+		replay.Add(frames + "-" + thisInput);
+		GD.Print(frames + "-" + thisInput);
+	}
+
+	void SaveReplay(){
+		var file = FileAccess.Open("res://Replay/test.txt", FileAccess.ModeFlags.Write);
+
+		foreach (var frame in replay){
+			file.StoreLine(frame);
+		}
 	}
 
 	void CheckBodyCollisions()
@@ -236,7 +278,6 @@ public partial class Player : CharacterBody2D
 		// display retry message
 		GetNode<Control>("/root/Scene/RestartText").Visible = true;
 		Oracle.Instance.displayTimerOn = false;
-
 	}
 
 	void ShootBulletHorizontal(int dir)
@@ -316,7 +357,6 @@ public partial class Player : CharacterBody2D
 			// play sound
 			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.fire, this, 4);
 			SoundManager.Instance.PlaySoundOnNode(SoundManager.Instance.voice_fire, this, 8);
-
 		}
 		else
 		{
@@ -365,7 +405,6 @@ public partial class Player : CharacterBody2D
 	// function to automatically transition animations
 	void HandleAnimation()
 	{
-
 		// auto transitions (on animation end)
 		if (!an.IsPlaying())
 		{
