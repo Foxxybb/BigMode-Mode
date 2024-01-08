@@ -774,6 +774,7 @@ animations = [{
 
 [node name="Scene" type="Node2D"]
 script = ExtResource("1_b6ubs")
+isDemoScene = true
 
 [node name="MyCamera" parent="." instance=ExtResource("3_bv338")]
 position = Vector2(640, 800)

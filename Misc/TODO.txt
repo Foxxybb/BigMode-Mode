@@ -168,8 +168,9 @@
 -demo mode
 //- demo game scene
 //- input recording
-
-- get RNG seed
-- input feeder?
+//- get RNG seed
+//- input feeder
+- audio slider update between scenes
+-auto scene changes for demo mode
 
 -webGL version

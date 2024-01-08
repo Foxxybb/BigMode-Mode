@@ -27,6 +27,7 @@ public partial class Oracle : Node
 	{
 		Instance = this;
 		Engine.MaxFps = 60;
+		GD.Seed(12345);
 
 		Events.Instance.GameSceneReady += () => OnNewScene();
 		Events.Instance.FinalKill += () => TriggerEndSequence();
@@ -63,11 +64,11 @@ public partial class Oracle : Node
 
 		if (Input.IsActionJustPressed("test_action"))
 		{
-			// if (DisplayServer.WindowGetMode() == (DisplayServer.WindowMode.ExclusiveFullscreen)){
-			// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-			// } else {
-			// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
-			// }
+			if (DisplayServer.WindowGetMode() == (DisplayServer.WindowMode.ExclusiveFullscreen)){
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			} else {
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
+			}
 		}
 
 		if (gameIsOver){

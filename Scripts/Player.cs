@@ -1,6 +1,7 @@
 using Godot;
 using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class Player : CharacterBody2D
 {
@@ -44,8 +45,11 @@ public partial class Player : CharacterBody2D
 	// REPLAY variables
 	int frames = 0;
 	Dictionary<string, string> inputDict = new Dictionary<string, string>(){{"L", "0"}, {"R", "0"}, {"C", "0"}};
+	Dictionary<string, string> prevInputDict = new Dictionary<string, string>(){{"L", "0"}, {"R", "0"}, {"C", "0"}};
 	// replay list is formatted the same as dictionary: frame-LRC
 	List<string> replay = new List<string>(){ "0-000" };
+	List<string> playback = new List<string>();
+	bool replaying = false;
 
 	public override void _Ready()
 	{
@@ -59,6 +63,8 @@ public partial class Player : CharacterBody2D
 		rightArmFlash = rightArm.GetNode<GpuParticles2D>("RightGunFlash");
 
 		ChangeAnimationState(IDLE);
+		LoadReplay();
+		StartReplay();
 	}
 
 	public override void _Process(double delta)
@@ -68,66 +74,29 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (replaying){
+			FeedReplay();
+		}
+
 		// Shooting
 		if (modeChangeCooldownTick <= 0)
 		{
-			if (Oracle.Instance.playerHasControl || autoFireOn)
+			// shoot left
+			if ((Input.IsActionPressed("shoot_left") && Oracle.Instance.playerHasControl) || inputDict["L"]=="1" || autoFireOn)
 			{
-				// shoot left
-				if (Input.IsActionPressed("shoot_left") || autoFireOn)
-				{
-					// if gun is cool, shoot and reset CD
-					if (leftArmCD <= 0)
-					{
-						if (jumpMode)
-						{
-							ShootBulletDown(-1);
-							// apply bullet force
-							Velocity = Velocity + new Vector2(bulletForce / (1.5f), -bulletForce * 2);
-						}
-						else
-						{
-							ShootBulletHorizontal(-1);
-							// apply bullet force
-							Velocity = Velocity + new Vector2(bulletForce, 0);
-						}
-
-						leftArmCD = baseCoolDown;
-					}
-					else
-					{ // tick down CD
-						leftArmCD--;
-					}
-				}
-
-				// shoot right
-				if (Input.IsActionPressed("shoot_right") || autoFireOn)
-				{
-					// if gun is cool, shoot and reset CD
-					if (rightArmCD <= 0)
-					{
-						if (jumpMode)
-						{
-							ShootBulletDown(1);
-							// apply bullet force
-							Velocity = Velocity + new Vector2(-bulletForce / (1.5f), -bulletForce * 2);
-						}
-						else
-						{
-							ShootBulletHorizontal(1);
-							// apply bullet force
-							Velocity = Velocity + new Vector2(-bulletForce, 0);
-						}
-
-						rightArmCD = baseCoolDown;
-					}
-					else
-					{ // tick down CD
-						rightArmCD--;
-					}
-				}
+				TriggerLeftGun();
+			} else {
+				leftArmCD = 0;
 			}
 
+			// shoot right
+			if ((Input.IsActionPressed("shoot_right") && Oracle.Instance.playerHasControl) || inputDict["R"]=="1" || autoFireOn)
+			{
+				TriggerRightGun();
+			} else {
+				rightArmCD = 0;
+			}
+			
 		}
 		else
 		{
@@ -152,10 +121,10 @@ public partial class Player : CharacterBody2D
 		}
 
 		// Jump
-		if (Oracle.Instance.playerHasControl)
-		{
-			// Handle Jump.
-			if (Input.IsActionJustPressed("mode_change") && modeChangeCooldownTick <= 0)
+		// Handle Jump
+		if (modeChangeCooldownTick <= 0){
+			if ((Input.IsActionJustPressed("mode_change") && Oracle.Instance.playerHasControl) ||
+			 (((inputDict["C"]=="1") && prevInputDict["C"]=="0") && replaying))
 			{
 				// go up when switching to jumpmode, fall when switching to firemode
 				if (!jumpMode)
@@ -171,8 +140,8 @@ public partial class Player : CharacterBody2D
 				// mode change
 				ModeChange();
 			}
-
 		}
+		
 
 		if (IsOnFloor())
 		{
@@ -192,15 +161,16 @@ public partial class Player : CharacterBody2D
 
 		CheckBodyCollisions();
 
+		frames += 1;
+
 		RecordInputs();
 
 		if (Input.IsActionJustPressed("test_action")){
-			SaveReplay();
+			//SaveReplay();
 		}
 	}
 
 	void RecordInputs(){
-		frames += 1;
 		// check each input and update inputDict
 		if (Input.IsActionPressed("shoot_left")){
 			inputDict["L"] = "1";
@@ -221,7 +191,6 @@ public partial class Player : CharacterBody2D
 		// append to replay array
 		var thisInput = inputDict["L"] + inputDict["R"] + inputDict["C"];
 		replay.Add(frames + "-" + thisInput);
-		GD.Print(frames + "-" + thisInput);
 	}
 
 	void SaveReplay(){
@@ -229,6 +198,41 @@ public partial class Player : CharacterBody2D
 
 		foreach (var frame in replay){
 			file.StoreLine(frame);
+		}
+		GD.Print("replay saved");
+	}
+
+	void LoadReplay(){
+		var file = FileAccess.Open("res://Replay/test.txt", FileAccess.ModeFlags.Read);
+
+		string content = file.GetAsText(true);
+		playback = content.Split("\n").ToList();
+		GD.Print("loaded replay");
+	}
+
+	void StartReplay(){
+		//Oracle.Instance.playerHasControl = false;
+		replaying = true;
+		GD.Print("started replay");
+	}
+
+	void FeedReplay(){
+		try {
+			// parse input
+			var thisInput = playback[frames].Split("-");
+			// update prevInputDict
+			prevInputDict["L"] = inputDict["L"];
+			prevInputDict["R"] = inputDict["R"];
+			prevInputDict["C"] = inputDict["C"];
+			// update inputDict
+			inputDict["L"] = thisInput[1][0].ToString();
+			inputDict["R"] = thisInput[1][1].ToString();
+			inputDict["C"] = thisInput[1][2].ToString();
+
+		} catch {
+			// if current frame has no input, stop feeding
+			replaying = false;
+			Oracle.Instance.playerHasControl = true;
 		}
 	}
 
@@ -278,6 +282,56 @@ public partial class Player : CharacterBody2D
 		// display retry message
 		GetNode<Control>("/root/Scene/RestartText").Visible = true;
 		Oracle.Instance.displayTimerOn = false;
+	}
+
+	void TriggerLeftGun(){
+		// if gun is cool, shoot and reset CD
+		if (leftArmCD <= 0)
+		{
+			if (jumpMode)
+			{
+				ShootBulletDown(-1);
+				// apply bullet force
+				Velocity = Velocity + new Vector2(bulletForce / (1.5f), -bulletForce * 2);
+			}
+			else
+			{
+				ShootBulletHorizontal(-1);
+				// apply bullet force
+				Velocity = Velocity + new Vector2(bulletForce, 0);
+			}
+
+			leftArmCD = baseCoolDown;
+		}
+		else
+		{ // tick down CD
+			leftArmCD--;
+		}
+	}
+
+	void TriggerRightGun(){
+		// if gun is cool, shoot and reset CD
+		if (rightArmCD <= 0)
+		{
+			if (jumpMode)
+			{
+				ShootBulletDown(1);
+				// apply bullet force
+				Velocity = Velocity + new Vector2(-bulletForce / (1.5f), -bulletForce * 2);
+			}
+			else
+			{
+				ShootBulletHorizontal(1);
+				// apply bullet force
+				Velocity = Velocity + new Vector2(-bulletForce, 0);
+			}
+
+			rightArmCD = baseCoolDown;
+		}
+		else
+		{ // tick down CD
+			rightArmCD--;
+		}
 	}
 
 	void ShootBulletHorizontal(int dir)

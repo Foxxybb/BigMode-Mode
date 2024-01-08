@@ -8,6 +8,7 @@ public partial class GameScene : Node2D
 	[Export] public AudioStreamWav soundOnExit;
 
 	[Export] public bool isGameplayScene;
+	[Export] public bool isDemoScene;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,6 +21,12 @@ public partial class GameScene : Node2D
 
 		if (soundForScene != null){
 			SoundManager.Instance.PlaySound(soundForScene);
+		}
+
+		if (isDemoScene){
+			Oracle.Instance.playerHasControl = false;
+		} else {
+			Oracle.Instance.playerHasControl = true;
 		}
 	}
 
