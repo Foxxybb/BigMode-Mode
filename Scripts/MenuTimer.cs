@@ -1,13 +1,11 @@
 using Godot;
 using System;
 
-public partial class VolumeSlider : HSlider
+public partial class MenuTimer : Timer
 {
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		this.Value = AudioServer.GetBusVolumeDb(0);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,12 +13,12 @@ public partial class VolumeSlider : HSlider
 	{
 	}
 
-	// signal method
-	private void _on_value_changed(double value)
+	private void _on_timeout()
 	{
-		AudioServer.SetBusVolumeDb(0, (float)value);
+		SoundManager.Instance.StopMusic();
+		Oracle.Instance.ChangeScene("res://Scenes/demoScene.tscn");
 	}
-
 }
+
 
 

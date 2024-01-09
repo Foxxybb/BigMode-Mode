@@ -1,4 +1,4 @@
-[gd_scene load_steps=204 format=3 uid="uid://d2r5xnbmuog2s"]
+[gd_scene load_steps=205 format=3 uid="uid://d2r5xnbmuog2s"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_b6ubs"]
 [ext_resource type="PackedScene" uid="uid://b6mmykm18ijah" path="res://Prefabs/myCamera.tscn" id="3_bv338"]
@@ -195,6 +195,7 @@
 [ext_resource type="Script" path="res://Scripts/DemoText.cs" id="193_le2dy"]
 [ext_resource type="Texture2D" uid="uid://c3kg201hpgwl7" path="res://Sprites/Victory/0060.png" id="193_oxff6"]
 [ext_resource type="Script" path="res://Scripts/Menu.cs" id="195_eaagy"]
+[ext_resource type="Script" path="res://Scripts/DemoTimer.cs" id="196_tbh61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcpy2"]
 size = Vector2(1280, 64)
@@ -1438,6 +1439,11 @@ theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "v2"
 
+[node name="DemoTimer" type="Timer" parent="."]
+wait_time = 25.0
+autostart = true
+script = ExtResource("196_tbh61")
+
 [connection signal="timeout" from="EventTimer" to="Spawner" method="_on_event_timer_timeout"]
 [connection signal="timeout" from="EventTimer" to="MovingBG" method="_on_event_timer_timeout"]
 [connection signal="timeout" from="EventTimer" to="EventTimer" method="_on_timeout"]
@@ -1446,3 +1452,4 @@ text = "v2"
 [connection signal="pressed" from="MenuButtons/VBoxContainer/Play" to="MenuButtons" method="_on_play_pressed"]
 [connection signal="pressed" from="MenuButtons/VBoxContainer/About" to="MenuButtons" method="_on_about_pressed"]
 [connection signal="pressed" from="MenuButtons/VBoxContainer/Quit" to="MenuButtons" method="_on_quit_pressed"]
+[connection signal="timeout" from="DemoTimer" to="DemoTimer" method="_on_timeout"]

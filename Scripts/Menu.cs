@@ -16,13 +16,22 @@ public partial class Menu : Control
 
 	private void _on_play_pressed()
 	{
-		//SoundManager.Instance.StopMusic();
 		Oracle.Instance.ChangeScene("res://Scenes/training.tscn");
+
+		var SMI = SoundManager.Instance;
+		if (!SMI.musicPlayer.Playing){
+			SMI.PlayMusic(SMI.introMusic);
+		}
 	}
 
 	private void _on_about_pressed()
 	{
 		Oracle.Instance.ChangeScene("res://Scenes/about.tscn");
+		
+		var SMI = SoundManager.Instance;
+		if (!SMI.musicPlayer.Playing){
+			SMI.PlayMusic(SMI.introMusic);
+		}
 	}
 
 	private void _on_quit_pressed()
@@ -32,6 +41,7 @@ public partial class Menu : Control
 
 	private void _on_demo_pressed()
 	{
+		SoundManager.Instance.StopMusic();
 		Oracle.Instance.ChangeScene("res://Scenes/demoScene.tscn");
 	}
 }

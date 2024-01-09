@@ -64,7 +64,10 @@ public partial class Player : CharacterBody2D
 
 		ChangeAnimationState(IDLE);
 		LoadReplay();
-		StartReplay();
+		if (GetNode<GameScene>("/root/Scene").isDemoScene){
+			StartReplay();
+		}
+		
 	}
 
 	public override void _Process(double delta)
@@ -163,7 +166,7 @@ public partial class Player : CharacterBody2D
 
 		frames += 1;
 
-		RecordInputs();
+		//RecordInputs();
 
 		if (Input.IsActionJustPressed("test_action")){
 			//SaveReplay();

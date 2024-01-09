@@ -170,7 +170,7 @@
 //- input recording
 //- get RNG seed
 //- input feeder
-- audio slider update between scenes
--auto scene changes for demo mode
+//-audio slider update between scenes
+//-auto scene changes for demo mode
 
 -webGL version
