@@ -124,9 +124,9 @@ self_modulate = Color(0.45098, 0.788235, 1, 1)
 top_level = true
 layout_mode = 0
 offset_left = 528.0
-offset_top = 288.0
+offset_top = 344.0
 offset_right = 800.0
-offset_bottom = 416.0
+offset_bottom = 472.0
 theme_override_font_sizes/normal_font_size = 30
 text = "CHANGE MODE"
 
@@ -135,9 +135,9 @@ self_modulate = Color(0.45098, 0.788235, 1, 1)
 top_level = true
 layout_mode = 0
 offset_left = 192.0
-offset_top = 288.0
+offset_top = 344.0
 offset_right = 464.0
-offset_bottom = 416.0
+offset_bottom = 472.0
 theme_override_font_sizes/normal_font_size = 30
 text = "Spacebar"
 
@@ -146,47 +146,12 @@ self_modulate = Color(0.45098, 0.788235, 1, 1)
 top_level = true
 layout_mode = 0
 offset_left = 936.0
-offset_top = 288.0
+offset_top = 344.0
 offset_right = 1208.0
-offset_bottom = 416.0
+offset_bottom = 472.0
 theme_override_font_sizes/normal_font_size = 30
 text = "Face Button
    (A/B/X/Y)"
-
-[node name="Control3" type="Control" parent="TutText"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HOWTOPLAY2" type="RichTextLabel" parent="TutText/Control3"]
-top_level = true
-layout_mode = 0
-offset_left = 512.0
-offset_top = 416.0
-offset_right = 784.0
-offset_bottom = 544.0
-theme_override_font_sizes/normal_font_size = 30
-text = "Toggle Fullscreen"
-
-[node name="HOWTOPLAY3" type="RichTextLabel" parent="TutText/Control3"]
-top_level = true
-layout_mode = 0
-offset_left = 232.0
-offset_top = 416.0
-offset_right = 504.0
-offset_bottom = 544.0
-theme_override_font_sizes/normal_font_size = 30
-text = "\"T\""
-
-[node name="HOWTOPLAY4" type="RichTextLabel" parent="TutText/Control3"]
-top_level = true
-layout_mode = 0
-offset_left = 888.0
-offset_top = 416.0
-offset_right = 1216.0
-offset_bottom = 544.0
-theme_override_font_sizes/normal_font_size = 30
-text = "Back/Select Button"
 
 [node name="Control4" type="Control" parent="TutText"]
 anchors_preset = 0
@@ -557,16 +522,9 @@ color = Color(0, 0, 0, 0.784314)
 
 [node name="ColorRect5" type="ColorRect" parent="."]
 offset_left = 368.0
-offset_top = 272.0
+offset_top = 328.0
 offset_right = 872.0
-offset_bottom = 344.0
-color = Color(0, 0, 0, 0.784314)
-
-[node name="ColorRect6" type="ColorRect" parent="."]
-offset_left = 368.0
-offset_top = 408.0
-offset_right = 872.0
-offset_bottom = 464.0
+offset_bottom = 400.0
 color = Color(0, 0, 0, 0.784314)
 
 [node name="ColorRect7" type="ColorRect" parent="."]

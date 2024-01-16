@@ -64,11 +64,11 @@ public partial class Oracle : Node
 
 		if (Input.IsActionJustPressed("test_action"))
 		{
-			if (DisplayServer.WindowGetMode() == (DisplayServer.WindowMode.ExclusiveFullscreen)){
-				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-			} else {
-				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
-			}
+			// if (DisplayServer.WindowGetMode() == (DisplayServer.WindowMode.ExclusiveFullscreen)){
+			// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			// } else {
+			// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
+			// }
 		}
 
 		if (gameIsOver){
