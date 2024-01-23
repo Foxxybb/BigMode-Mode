@@ -63,11 +63,12 @@ public partial class Player : CharacterBody2D
 		rightArmFlash = rightArm.GetNode<GpuParticles2D>("RightGunFlash");
 
 		ChangeAnimationState(IDLE);
-		LoadReplay();
+		
 		if (GetNode<GameScene>("/root/Scene").isDemoScene){
+			//LoadReplay();
+			LoadReplayResource();
 			StartReplay();
 		}
-		
 	}
 
 	public override void _Process(double delta)
@@ -79,6 +80,7 @@ public partial class Player : CharacterBody2D
 	{
 		if (replaying){
 			FeedReplay();
+			//GD.Print(playback[frames]);
 		}
 
 		// Shooting
@@ -206,11 +208,18 @@ public partial class Player : CharacterBody2D
 	}
 
 	void LoadReplay(){
-		var file = FileAccess.Open("res://Replay/test.txt", FileAccess.ModeFlags.Read);
+		var file = FileAccess.Open("Replay/test.txt", FileAccess.ModeFlags.Read);
 
 		string content = file.GetAsText(true);
 		playback = content.Split("\n").ToList();
 		GD.Print("loaded replay");
+	}
+
+	void LoadReplayResource(){
+		var replayResource = GD.Load<ReplayResource>("Replay/demo_replay.tres");
+
+		playback = replayResource.replayData.Split("\n").ToList();
+		GD.Print("loaded replay resource");
 	}
 
 	void StartReplay(){

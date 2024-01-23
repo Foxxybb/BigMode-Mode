@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dw8t8rdvusuee"]
+
+[ext_resource type="Script" path="res://Replay/ReplayResource.cs" id="1_r1l2d"]
+
+[resource]
+script = ExtResource("1_r1l2d")
